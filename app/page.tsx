@@ -250,9 +250,9 @@ export default function Home() {
               </p>
               <div className="flex flex-col gap-4">
                 <a href="mailto:widaaaltaher121@gmail.com" className="text-xl font-bold flex items-center gap-3 hover:text-primary transition-colors">
-                  ✉️ hamzaelzain2000@gmail.com
+                  ✉️ hamzaelzain.eng@gmail.com
                 </a>
-                <a href="https://wa.me/+249126994464" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">
+                <a href="https://wa.me/+249 11 661 3320" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">
                   تواصل واتساب
                 </a>
               </div>
