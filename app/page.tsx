@@ -218,4 +218,154 @@ export default function Home() {
             <p className="text-gray-600 mt-4">استخدم هذه الأدوات كتقدير مبدئي قبل الاستشارة الهندسية.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* HVAC Calculator */}
+            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
+              <h4 className="text-2xl font-bold mb-2">حاسبة حمل التكييف التقديري</h4>
+              <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة (يفترض ارتفاع قياسي).</p>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>
+                  <input
+                    type="number"
+                    value={hvacArea}
+                    onChange={(e) => setHvacArea(e.target.value === '' ? '' : Number(e.target.value))}
+                    placeholder="مثال: 50"
+                    className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
+                  />
+                </div>
+                <button onClick={calculateHvac} className="btn-primary w-full mt-2">احسب السعة</button>
+                {hvacResult !== null && (
+                  <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">
+                    السعة المطلوبة تقريباً: <span className="font-bold text-2xl mx-1">{hvacResult}</span> طن تبريد
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Fire Extinguisher Calculator */}
+            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
+              <h4 className="text-2xl font-bold mb-2">حاسبة طفايات الحريق التقريبية</h4>
+              <p className="text-sm text-gray-500 mb-6">احسب العدد التقريبي لطفايات الحريق اليدوية بناءً على المساحة.</p>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة الإجمالية للمكان (متر مربع):</label>
+                  <input
+                    type="number"
+                    value={fireArea}
+                    onChange={(e) => setFireArea(e.target.value === '' ? '' : Number(e.target.value))}
+                    placeholder="مثال: 1000"
+                    className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
+                  />
+                </div>
+                <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2">احسب العدد</button>
+                {fireResult !== null && (
+                  <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">
+                    العدد التقديري: <span className="font-bold text-2xl mx-1">{fireResult}</span> طفايات حريق
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact/Footer */}
+        <section id="contact" className="py-20 bg-foreground text-white px-6 md:px-10">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">لنتحدث حول مشروعك.</h2>
+              <p className="text-gray-300 text-lg mb-8">
+                سواء كنت تحتاج لتصميم أنظمة ذكية، حل مشكلة فنية، أو استشارة سريعة، فريقنا الهندسي جاهز لخدمتك.
+              </p>
+              <div className="flex flex-col gap-4">
+                <a href="mailto:hamzaelzain.eng@gmail.com" className="text-xl font-bold flex items-center gap-3 hover:text-primary transition-colors">
+                  ✉️ hamzaelzain.eng@gmail.com
+                </a>
+                <a href="https://wa.me/249116613320" target="_blank" rel="noopener noreferrer" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">
+                  📱 تواصل واتساب (+249 11 661 3320)
+                </a>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20">
+              <h3 className="text-2xl font-bold mb-6">طلب خدمة</h3>
+              <form onSubmit={handleSubmitOrder} className="flex flex-col gap-4 text-gray-800">
+                <input
+                  type="text"
+                  placeholder="الاسم"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                  required
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                />
+                <input
+                  type="tel"
+                  placeholder="رقم الهاتف"
+                  value={clientPhone}
+                  onChange={(e) => setClientPhone(e.target.value)}
+                  required
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                />
+                <select
+                  value={clientService}
+                  onChange={(e) => setClientService(e.target.value)}
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                >
+                  <option value="">نوع الخدمة...</option>
+                  <option value="تصميم أنظمة MEP">تصميم أنظمة MEP</option>
+                  <option value="خطوط الإنتاج">خطوط الإنتاج</option>
+                  <option value="تصميم أجزاء مخصصة">تصميم أجزاء مخصصة</option>
+                  <option value="استشارة هندسية">استشارة هندسية</option>
+                  <option value="الصيانة والتشغيل">الصيانة والتشغيل</option>
+                </select>
+                <textarea
+                  placeholder="تفاصيل الطلب..."
+                  rows={4}
+                  value={clientDetails}
+                  onChange={(e) => setClientDetails(e.target.value)}
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                ></textarea>
+
+                {/* اختيار وسيلة الإرسال */}
+                <div className="flex flex-col gap-2 mt-2 bg-white/5 p-3 rounded border border-white/10 text-white">
+                  <span className="text-sm font-semibold text-gray-200">اختر طريقة إرسال الطلب:</span>
+                  <div className="flex gap-6">
+                    <label className="flex items-center gap-2 cursor-pointer text-sm">
+                      <input
+                        type="radio"
+                        name="sendMethod"
+                        value="whatsapp"
+                        checked={sendMethod === 'whatsapp'}
+                        onChange={() => setSendMethod('whatsapp')}
+                        className="accent-primary"
+                      />
+                      واتساب
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer text-sm">
+                      <input
+                        type="radio"
+                        name="sendMethod"
+                        value="gmail"
+                        checked={sendMethod === 'gmail'}
+                        onChange={() => setSendMethod('gmail')}
+                        className="accent-primary"
+                      />
+                      البريد الإلكتروني (Gmail)
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" className="btn-primary mt-2 cursor-pointer">إرسال الطلب</button>
+              </form>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <span>&copy; {new Date().getFullYear()} مؤسسة حمزة للحلول الهندسية. جميع الحقوق محفوظة.</span>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
