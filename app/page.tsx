@@ -15,47 +15,36 @@ export default function Home() {
   const [fireArea, setFireArea] = useState<number | ''>('');
   const [fireResult, setFireResult] = useState<number | null>(null);
 
-  // Contact Form State
-  const [clientName, setClientName] = useState('');
-  const [clientPhone, setClientPhone] = useState('');
+  // Contact Form State (تم حذف حقول الاسم ورقم الهاتف)
   const [clientService, setClientService] = useState('');
   const [clientDetails, setClientDetails] = useState('');
   const [sendMethod, setSendMethod] = useState<'whatsapp' | 'gmail'>('whatsapp');
 
   const calculateHvac = () => {
     if (hvacArea && typeof hvacArea === 'number') {
-      // Rough estimation: 1 Ton per 12 square meters for standard height
       setHvacResult(Number((hvacArea / 12).toFixed(1)));
     }
   };
 
   const calculateFireExtinguisher = () => {
     if (fireArea && typeof fireArea === 'number') {
-      // Rough estimation: 1 Extinguisher per ~200 square meters
       setFireResult(Math.ceil(fireArea / 200));
     }
   };
 
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!clientName || !clientPhone) {
-      alert('الرجاء إدخال الاسم ورقم الهاتف على الأقل.');
-      return;
-    }
 
-    // تجهيز نص الطلب جاهزاً
+    // تجهيز نص الطلب جاهزاً بدون الحاجة للاسم ورقم الهاتف
     const message = `السلام عليكم، أود طلب خدمة هندسية:\n\n` +
-      `👤 الاسم: ${clientName}\n` +
-      `📱 الهاتف: ${clientPhone}\n` +
       `⚙️ نوع الخدمة: ${clientService || 'غير محدد'}\n` +
       `📝 التفاصيل: ${clientDetails || 'لا توجد تفاصيل إضافية'}`;
 
     if (sendMethod === 'whatsapp') {
       const encodedMessage = encodeURIComponent(message);
-      // رقم الواتساب بدون مسافات أو رموز زائدة
       window.open(`https://wa.me/249116613320?text=${encodedMessage}`, '_blank');
     } else {
-      const subject = encodeURIComponent(`طلب خدمة جديدة من: ${clientName}`);
+      const subject = encodeURIComponent(`طلب خدمة هندسية جديدة`);
       const body = encodeURIComponent(message);
       window.location.href = `mailto:hamzaelzain.eng@gmail.com?subject=${subject}&body=${body}`;
     }
@@ -291,22 +280,6 @@ export default function Home() {
             <div className="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20">
               <h3 className="text-2xl font-bold mb-6">طلب خدمة</h3>
               <form onSubmit={handleSubmitOrder} className="flex flex-col gap-4 text-gray-800">
-                <input
-                  type="text"
-                  placeholder="الاسم"
-                  value={clientName}
-                  onChange={(e) => setClientName(e.target.value)}
-                  required
-                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
-                />
-                <input
-                  type="tel"
-                  placeholder="رقم الهاتف"
-                  value={clientPhone}
-                  onChange={(e) => setClientPhone(e.target.value)}
-                  required
-                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
-                />
                 <select
                   value={clientService}
                   onChange={(e) => setClientService(e.target.value)}
