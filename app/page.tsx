@@ -15,6 +15,13 @@ export default function Home() {
   const [fireArea, setFireArea] = useState<number | ''>('');
   const [fireResult, setFireResult] = useState<number | null>(null);
 
+  // Contact Form State
+  const [clientName, setClientName] = useState('');
+  const [clientPhone, setClientPhone] = useState('');
+  const [clientService, setClientService] = useState('');
+  const [clientDetails, setClientDetails] = useState('');
+  const [sendMethod, setSendMethod] = useState<'whatsapp' | 'gmail'>('whatsapp');
+
   const calculateHvac = () => {
     if (hvacArea && typeof hvacArea === 'number') {
       // Rough estimation: 1 Ton per 12 square meters for standard height
@@ -26,6 +33,31 @@ export default function Home() {
     if (fireArea && typeof fireArea === 'number') {
       // Rough estimation: 1 Extinguisher per ~200 square meters
       setFireResult(Math.ceil(fireArea / 200));
+    }
+  };
+
+  const handleSubmitOrder = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!clientName || !clientPhone) {
+      alert('الرجاء إدخال الاسم ورقم الهاتف على الأقل.');
+      return;
+    }
+
+    // تجهيز نص الطلب جاهزاً
+    const message = `السلام عليكم، أود طلب خدمة هندسية:\n\n` +
+      `👤 الاسم: ${clientName}\n` +
+      `📱 الهاتف: ${clientPhone}\n` +
+      `⚙️ نوع الخدمة: ${clientService || 'غير محدد'}\n` +
+      `📝 التفاصيل: ${clientDetails || 'لا توجد تفاصيل إضافية'}`;
+
+    if (sendMethod === 'whatsapp') {
+      const encodedMessage = encodeURIComponent(message);
+      // رقم الواتساب بدون مسافات أو رموز زائدة
+      window.open(`https://wa.me/249116613320?text=${encodedMessage}`, '_blank');
+    } else {
+      const subject = encodeURIComponent(`طلب خدمة جديدة من: ${clientName}`);
+      const body = encodeURIComponent(message);
+      window.location.href = `mailto:hamzaelzain.eng@gmail.com?subject=${subject}&body=${body}`;
     }
   };
 
@@ -70,7 +102,6 @@ export default function Home() {
       <main className="pt-24 md:pt-32">
         {/* Hero Section */}
         <section className="px-6 md:px-10 py-20 md:py-32 border-b border-gray-100 bg-white overflow-hidden relative min-h-[70vh] flex items-center">
-          {/* Background Image Container - Always absolute on mobile, relative on desktop grid */}
           <div className="absolute md:hidden inset-0 z-0">
             <Image
               src="/paper.webp"
@@ -80,7 +111,6 @@ export default function Home() {
               sizes="100vw"
               priority
             />
-            {/* <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]"></div> */}
           </div>
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">
@@ -101,7 +131,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Desktop Hero Image - Only visible on md+ */}
             <div className="hidden md:block relative h-[500px] w-full fade-in-up delay-200">
               <Image
                 src="/paper.webp"
@@ -189,98 +218,4 @@ export default function Home() {
             <p className="text-gray-600 mt-4">استخدم هذه الأدوات كتقدير مبدئي قبل الاستشارة الهندسية.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* HVAC Calculator */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
-              <h4 className="text-2xl font-bold mb-2">حاسبة حمل التكييف التقديري</h4>
-              <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة (يفترض ارتفاع قياسي).</p>
-              <div className="flex flex-col gap-4">
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>
-                  <input
-                    type="number"
-                    value={hvacArea}
-                    onChange={(e) => setHvacArea(e.target.value === '' ? '' : Number(e.target.value))}
-                    placeholder="مثال: 50"
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
-                  />
-                </div>
-                <button onClick={calculateHvac} className="btn-primary w-full mt-2">احسب السعة</button>
-                {hvacResult !== null && (
-                  <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">
-                    السعة المطلوبة تقريباً: <span className="font-bold text-2xl mx-1">{hvacResult}</span> طن تبريد
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Fire Extinguisher Calculator */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
-              <h4 className="text-2xl font-bold mb-2">حاسبة طفايات الحريق التقريبية</h4>
-              <p className="text-sm text-gray-500 mb-6">احسب العدد التقريبي لطفايات الحريق اليدوية بناءً على المساحة.</p>
-              <div className="flex flex-col gap-4">
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة الإجمالية للمكان (متر مربع):</label>
-                  <input
-                    type="number"
-                    value={fireArea}
-                    onChange={(e) => setFireArea(e.target.value === '' ? '' : Number(e.target.value))}
-                    placeholder="مثال: 1000"
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
-                  />
-                </div>
-                <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2">احسب العدد</button>
-                {fireResult !== null && (
-                  <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">
-                    العدد التقديري: <span className="font-bold text-2xl mx-1">{fireResult}</span> طفايات حريق
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact/Footer */}
-        <section id="contact" className="py-20 bg-foreground text-white px-6 md:px-10">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">لنتحدث حول مشروعك.</h2>
-              <p className="text-gray-300 text-lg mb-8">
-                سواء كنت تحتاج لتصميم أنظمة ذكية، حل مشكلة فنية، أو استشارة سريعة، فريقنا الهندسي جاهز لخدمتك.
-              </p>
-              <div className="flex flex-col gap-4">
-                <a href="mailto:widaaaltaher121@gmail.com" className="text-xl font-bold flex items-center gap-3 hover:text-primary transition-colors">
-                  ✉️ hamzaelzain.eng@gmail.com
-                </a>
-                <a href="https://wa.me/+249 11 661 3320" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">
-                  تواصل واتساب
-                </a>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20">
-              <h3 className="text-2xl font-bold mb-6">طلب خدمة</h3>
-              <form className="flex flex-col gap-4 text-gray-800">
-                <input type="text" placeholder="الاسم" className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary" />
-                <input type="tel" placeholder="رقم الهاتف" className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary" />
-                <select className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary">
-                  <option value="">نوع الخدمة...</option>
-                  <option value="mep">تصميم أنظمة MEP</option>
-                  <option value="lines">خطوط الإنتاج</option>
-                  <option value="consult">استشارة هندسية</option>
-                </select>
-                <textarea placeholder="تفاصيل الطلب..." rows={4} className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"></textarea>
-                <button type="button" className="btn-primary mt-2">إرسال الطلب</button>
-              </form>
-            </div>
-          </div>
-
-          <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <span>&copy; {new Date().getFullYear()} مؤسسة حمزة للحلول الهندسية. جميع الحقوق محفوظة.</span>
-          </div>
-        </section>
-      </main>
-    </div>
-  );
-}
+          <div className="grid grid-cols-1 md:grid-cols-2
