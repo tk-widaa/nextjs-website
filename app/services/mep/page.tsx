@@ -32,7 +32,7 @@ export default function MEPService() {
         {/* Feature 2: Reversed */}
         <section className="flex flex-col md:flex-row-reverse gap-10 items-center py-20 px-6 max-w-7xl mx-auto border-b border-gray-100 bg-gray-50/50">
            <div className="w-full md:w-1/2">
-             <h3 className="text-3xl font-bold mb-6 border-r-4 border-primary pr-4">هندسة الحماية من الحرائق.. دقة التنفيذ، وهيبة الالتزام./<h3>
+             <h3 className="text-3xl font-bold mb-6 border-r-4 border-primary pr-4">هندسة الحماية من الحرائق.. دقة التنفيذ، وهيبة الالتزام.</h3>
              <p className="text-xl text-gray-700 leading-relaxed">
                حماية الأرواح والممتلكات هي الأولوية القصوى. نصمم شبكات حريق متكاملة (رشاشات، صناديق حريق، وأنظمة غازية) متطابقة مع كود NFPA وكود الدفاع المدني لضمان الجاهزية التامة في حالات الطوارئ والسيطرة السريعة على أي خطر.
              </p>
