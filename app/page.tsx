@@ -424,26 +424,30 @@ export default function Home() {
                   <span className="text-sm font-semibold text-gray-200">اختر طريقة إرسال الطلب:</span>
                   <div className="flex gap-6">
                     <label className="flex items-center gap-2 cursor-pointer text-sm">
-                      <input
-                        type="radio"
-                        name="sendMethod"
-                        value="whatsapp"
-                        checked={sendMethod === 'whatsapp'}
-                        onChange={() => setSendMethod('sendMethod')} // ملاحظة: تم إصلاح الخطأ البرمجي هنا ليعمل بسلاسة
+                    <input
+  type="radio"
+  name="sendMethod"
+  value="whatsapp"
+  checked={sendMethod === 'whatsapp'}
+  onChange={() => setSendMethod('whatsapp')} // الصحيح هنا
+  className="accent-primary"
+/>
+ // ملاحظة: تم إصلاح الخطأ البرمجي هنا ليعمل بسلاسة
                         onClick={() => setSendMethod('whatsapp')}
                         className="accent-primary"
                       />
                       واتساب
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer text-sm">
-                      <input
-                        type="radio"
-                        name="sendMethod"
-                        value="gmail"
-                        checked={sendMethod === 'gmail'}
-                        onChange={() => setSendMethod('sendMethod')}
-                        onClick={() => setSendMethod('gmail')}
-                        className="accent-primary"
+                     <input
+  type="radio"
+  name="sendMethod"
+  value="gmail"
+  checked={sendMethod === 'gmail'}
+  onChange={() => setSendMethod('gmail')} // الصحيح هنا
+  className="accent-primary"
+/>
+
                       />
                       البريد الإلكتروني (Gmail)
                     </label>
@@ -465,4 +469,3 @@ export default function Home() {
 }
 
 
-د الموقع عاوز الانسيابية دي فيه هنا
