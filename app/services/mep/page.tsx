@@ -4,8 +4,20 @@ import Image from 'next/image';
 export default function MEPService() {
   return (
     <div className="w-full bg-background text-foreground font-sans min-h-screen flex flex-col">
-      <nav className="p-4 md:px-10 border-b border-gray-100 bg-white/95 sticky top-0 z-50 shadow-sm">
-        <Link href="/" className="text-2xl font-bold text-primary">حمزة</Link>
+      {/* Navigation */}
+      <nav className="p-4 md:px-10 border-b border-gray-100 bg-white/95 sticky top-0 z-50 shadow-sm flex justify-between items-center">
+        <Link href="/" className="text-2xl font-bold text-primary transition-opacity hover:opacity-80">
+          حمزة
+        </Link>
+        <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
+          <Link href="/" className="hover:text-primary transition-colors">الرئيسية</Link>
+          <Link href="/#services" className="hover:text-primary transition-colors">خدماتنا</Link>
+          <Link href="/#tools" className="hover:text-primary transition-colors">أدوات هندسية</Link>
+          <Link href="/#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
+        </div>
+        <Link href="/#contact" className="btn-primary text-sm">
+          اطلب خدمة
+        </Link>
       </nav>
       
       <main className="flex-grow">
