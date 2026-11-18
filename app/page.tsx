@@ -54,6 +54,53 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Professional Scroll Reveal Animation
+useEffect(() => {
+const elements = document.querySelectorAll(
+'main h1, main h2, main h3, main h4, main p, main .btn-primary, main #services .grid > a, main #tools .grid > div, main img'
+);
+
+const observer = new IntersectionObserver(  
+  (entries) => {  
+    entries.forEach((entry) => {  
+      if (entry.isIntersecting) {  
+        entry.target.classList.add('reveal-visible');  
+        observer.unobserve(entry.target);  
+      }  
+    });  
+  },  
+  {  
+    threshold: 0.12,  
+    rootMargin: '0px 0px -40px 0px',  
+  }  
+);  
+
+elements.forEach((element, index) => {  
+  element.classList.add('reveal-element');  
+
+  // Stagger animation for cards  
+  if (  
+    element.matches(  
+      '#services .grid > a, #tools .grid > div'  
+    )  
+  ) {  
+    const cardIndex = Array.from(  
+      element.parentElement?.children || []  
+    ).indexOf(element);  
+
+    element.classList.add('reveal-card');  
+    (element as HTMLElement).style.setProperty(  
+      '--reveal-delay',  
+      `${cardIndex * 120}ms`  
+    );  
+  }  
+
+  observer.observe(element);  
+});  
+
+return () => observer.disconnect();
+}, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
