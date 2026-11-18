@@ -162,7 +162,7 @@ export default function Home() {
             </div>  
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">  
-              <Link href="#contact" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
+              <Link href="/services/mep" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">❄️</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   تصميم أنظمة MEP  
@@ -171,7 +171,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">تصميم أنظمة التكييف والتهوية (HVAC)، مكافحة الحريق (Firefighting)، الأنظمة الصحية، والسلامة.</p>  
               </Link>  
 
-              <Link href="#contact" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
+              <Link href="/services/production-lines" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">⚙️</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   خطوط الإنتاج  
@@ -180,7 +180,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">تصميم وتطوير خطوط الإنتاج، تحليل الأعطال وإيجاد الحلول الجبرية لتحسين كفاءة التشغيل.</p>  
               </Link>  
 
-              <Link href="#contact" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
+              <Link href="/services/custom-parts" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧩</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   تصميم أجزاء مخصصة  
@@ -189,7 +189,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">تصميم قطع ميكانيكية حسب الطلب وتعديل تصميمات قائمة لحل مشاكل فنية.</p>  
               </Link>  
 
-              <Link href="#contact" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
+              <Link href="/services/consulting" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧠</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   الاستشارات الهندسية  
@@ -198,7 +198,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">مراجعة التصميمات بدقة، تقديم حلول فنية للمشاكل الهندسية ودعم المشاريع بالخبرات.</p>  
               </Link>  
 
-              <Link href="#contact" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
+              <Link href="/services/online-maintenance" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🛠️</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   الصيانة والتشغيل  
