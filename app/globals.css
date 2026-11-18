@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  /* Corporate Blue and Warm Creamy White Palette */
-  --background: #faf8f5;
+  /* تم تغيير الخلفية إلى أبيض ناصع البياض */
+  --background: #ffffff;
   --foreground: #0f172a;
   --primary: #1d4ed8; 
   --primary-hover: #1e3a8a;
@@ -34,7 +34,7 @@ body {
 .card-hover {
   transition: all 0.3s ease;
   border-radius: 0.5rem;
-  background-color: #fdfbf7;
+  background-color: #ffffff;
   border: 1px solid #f0ece1;
 }
 
