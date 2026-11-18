@@ -172,21 +172,18 @@ html.reveal-ready .reveal.is-visible {
 .reveal-element {
   opacity: 0;
   transform: translateY(32px);
-  filter: none;
-
+  
   transition:
     opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.85s ease;
-
-  will-change: opacity, transform, filter;
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  will-change: opacity, transform;
 }
 
 /* Visible */
 .reveal-element.reveal-visible {
   opacity: 1;
   transform: translateY(0);
-  filter: none;
 }
 
 /* Cards */
@@ -218,8 +215,8 @@ img.reveal-element.reveal-visible {
 }
 
 /* Service & Calculator Cards */
-#services .grid > a,
-#tools .grid > div {
+#services .grid>a,
+#tools .grid>div {
   transition:
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.45s ease,
@@ -228,8 +225,9 @@ img.reveal-element.reveal-visible {
 
 /* Smooth Hover */
 @media (hover: hover) {
-  #services .grid > a:hover,
-  #tools .grid > div:hover {
+
+  #services .grid>a:hover,
+  #tools .grid>div:hover {
     transform: translateY(-7px);
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09);
     border-color: var(--primary);
@@ -255,17 +253,17 @@ img.reveal-element.reveal-visible {
 @media (max-width: 768px) {
   .reveal-element {
     transform: translateY(22px);
-    filter: blur(3px);
     transition-duration: 0.7s;
   }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   .reveal-element,
   .reveal-element.reveal-visible,
-  #services .grid > a,
-  #tools .grid > div,
+  #services .grid>a,
+  #tools .grid>div,
   .btn-primary {
     opacity: 1 !important;
     transform: none !important;
@@ -274,4 +272,3 @@ img.reveal-element.reveal-visible {
     animation: none !important;
   }
 }
-
