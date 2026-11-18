@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -20,17 +20,49 @@ export default function Home() {
   const [clientDetails, setClientDetails] = useState('');
   const [sendMethod, setSendMethod] = useState<'whatsapp' | 'gmail'>('whatsapp');
 
-  const calculateHvac = () => {
-    if (hvacArea && typeof hvacArea === 'number') {
-      setHvacResult(Number((hvacArea / 12).toFixed(1)));
+// Scroll Reveal Animation
+useEffect(() => {
+  document.documentElement.classList.add('reveal-ready');
+  
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px',
     }
+  );
+  
+  const elements = document.querySelectorAll('.reveal');
+  
+  elements.forEach((element) => observer.observe(element));
+  
+  return () => {
+    observer.disconnect();
+    document.documentElement.classList.remove('reveal-ready');
   };
+}, []);
+  const calculateHvac = () => {
+  if (typeof hvacArea === 'number' && hvacArea > 0) {
+    setHvacResult(Number((hvacArea / 12).toFixed(1)));
+  } else {
+    setHvacResult(null);
+  }
+};
 
   const calculateFireExtinguisher = () => {
-    if (fireArea && typeof fireArea === 'number') {
-      setFireResult(Math.ceil(fireArea / 200));
-    }
-  };
+  if (typeof fireArea === 'number' && fireArea > 0) {
+    setFireResult(Math.ceil(fireArea / 200));
+  } else {
+    setFireResult(null);
+  }
+};
 
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,20 +90,22 @@ export default function Home() {
           حمزة
         </Link>
         <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
-          <Link href="#about" className="hover:text-primary transition-colors">من نحن</Link>
-          <Link href="#services" className="hover:text-primary transition-colors">خدماتنا</Link>
-          <Link href="#tools" className="hover:text-primary transition-colors">أدوات هندسية</Link>
-          <Link href="#portfolio" className="hover:text-primary transition-colors">أعمالنا</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
+          <Link href="#about" className="hover:text-primary transition-all duration-200 hover:scale-105">من نحن</Link>
+          <Link href="#services" className="hover:text-primary transition-all duration-200 hover:scale-105">خدماتنا</Link>
+          <Link href="#tools" className="hover:text-primary transition-all duration-200 hover:scale-105">أدوات هندسية</Link>
+          <Link href="#portfolio" className="hover:text-primary transition-all duration-200 hover:scale-105">أعمالنا</Link>
+          <Link href="#contact" className="hover:text-primary transition-all duration-200 hover:scale-105">تواصل معنا</Link>
         </div>
         <a href="#contact" className="btn-primary text-sm hidden md:flex">
           اطلب خدمة
         </a>
                <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-primary p-2 focus:outline-none"
-          aria-label="القائمة"
-        >
+  onClick={() => setIsMenuOpen(!isMenuOpen)}
+  className="md:hidden text-primary p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+  aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
+  aria-expanded={isMenuOpen}
+  aria-controls="mobile-menu"
+>
           {isMenuOpen ? (
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -85,13 +119,20 @@ export default function Home() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-white transition-transform duration-300 ease-in-out transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden pt-24`}>
+      <div
+  id="mobile-menu"
+  className={`fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transition-all duration-300 ease-in-out transform ${
+    isMenuOpen
+      ? 'translate-x-0 opacity-100 visible'
+      : 'translate-x-full opacity-0 invisible'
+  } md:hidden pt-24`}
+>
         <div className="flex flex-col items-center gap-8 text-xl font-bold text-gray-800">
-          <Link href="#about" onClick={() => setIsMenuOpen(false)}>من نحن</Link>
-          <Link href="#services" onClick={() => setIsMenuOpen(false)}>خدماتنا</Link>
-          <Link href="#tools" onClick={() => setIsMenuOpen(false)}>أدوات هندسية</Link>
-          <Link href="#portfolio" onClick={() => setIsMenuOpen(false)}>أعمالنا</Link>
-          <Link href="#contact" onClick={() => setIsMenuOpen(false)}>تواصل معنا</Link>
+          <Link href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-all duration-200 hover:scale-105">من نحن</Link>
+          <Link href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-all duration-200 hover:scale-105">خدماتنا</Link>
+          <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-all duration-200 hover:scale-105">أدوات هندسية</Link>
+          <Link href="#portfolio" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-all duration-200 hover:scale-105">أعمالنا</Link>
+          <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-all duration-200 hover:scale-105">تواصل معنا</Link>
           <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4">اطلب خدمة</a>
         </div>
       </div>
@@ -142,7 +183,9 @@ export default function Home() {
         </section>
 
         {/* About Us */}
-        <section id="about" className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto text-center">
+        <section
+  id="about"
+  className="reveal py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto text-center">
           <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">من نحن</h2>
           <h3 className="text-3xl md:text-4xl font-bold mb-8">نؤمن أن كل مشكلة هندسية لها حل ذكي</h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
@@ -153,13 +196,21 @@ export default function Home() {
         {/* Services */}
         <section id="services" className="py-16 md:py-24 bg-gray-50 border-y border-gray-100 px-6 md:px-10">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 reveal">
               <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">خدماتنا</h2>
               <h3 className="text-3xl md:text-4xl font-bold">الحلول الهندسية الشاملة</h3>
             </div>
+<div className="grid
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Link href="/services/mep" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+grid-cols-1 md:grid-cols-2
+
+1g:grid-cols-3 gap-8">
+
+<Link href="/
+
+services/mep"
+
+className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-colgroup block">
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">❄️</div>
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
                   تصميم أنظمة MEP
@@ -168,7 +219,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">تصميم أنظمة التكييف والتهوية (HVAC)، مكافحة الحريق (Firefighting)، الأنظمة الصحية، والسلامة.</p>
               </Link>
 
-              <Link href="/services/production-lines" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+             <Link href="/services/mep" className="reveal reveal-delay-1 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">⚙️</div>
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
                   خطوط الإنتاج
@@ -177,7 +228,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">تصميم وتطوير خطوط الإنتاج، تحليل الأعطال وإيجاد الحلول الجبرية لتحسين كفاءة التشغيل.</p>
               </Link>
 
-              <Link href="/services/custom-parts" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+              <Link href="/services/custom-parts" className="reveal reveal-delay-2 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧩</div>
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
                   تصميم أجزاء مخصصة
@@ -186,7 +237,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">تصميم قطع ميكانيكية حسب الطلب وتعديل تصميمات قائمة لحل مشاكل فنية.</p>
               </Link>
 
-              <Link href="/services/consulting" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+              <Link href="/services/custom-parts" className="reveal reveal-delay-3 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧠</div>
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
                   الاستشارات الهندسية
@@ -195,13 +246,14 @@ export default function Home() {
                 <p className="text-gray-600 mb-4 flex-grow">مراجعة التصميمات بدقة، تقديم حلول فنية للمشاكل الهندسية ودعم المشاريع بالخبرات.</p>
               </Link>
 
-              <Link href="/services/online-maintenance" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+             <Link href="/services/consulting" className="reveal reveal-delay-4 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
                 <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🛠️</div>
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
                   الصيانة والتشغيل
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
                 </h4>
                 <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>
+<Link href="/services/online-maintenance" className="reveal reveal-delay-5 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
               </Link>
             </div>
           </div>
@@ -217,57 +269,87 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* HVAC Calculator */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
+            <div className="reveal reveal-delay-1 bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
               <h4 className="text-2xl font-bold mb-2">حاسبة حمل التكييف التقديري</h4>
               <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة (يفترض ارتفاع قياسي).</p>
               <div className="flex flex-col gap-4">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>
                   <input
-                    type="number"
-                    value={hvacArea}
-                    onChange={(e) => setHvacArea(e.target.value === '' ? '' : Number(e.target.value))}
-                    placeholder="مثال: 50"
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
-                  />
+  type="number"
+  min="1"
+  step="0.1"
+  value={hvacArea}
+  onChange={(e) =>
+    setHvacArea(
+      e.target.value === '' ? '' : Number(e.target.value)
+    )
+  }
+  placeholder="مثال: 50"
+  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
+/>
                 </div>
                 <button onClick={calculateHvac} className="btn-primary w-full mt-2">احسب السعة</button>
-                {hvacResult !== null && (
-                  <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">
-                    السعة المطلوبة تقريباً: <span className="font-bold text-2xl mx-1">{hvacResult}</span> طن تبريد
-                  </div>
-                )}
+               {hvacResult !== null && (
+  <div className="mt-5 p-5 bg-accent text-primary rounded-xl border border-primary/20 text-center">
+    <p className="text-sm mb-2">السعة التقديرية المطلوبة</p>
+    <div className="text-3xl font-black">
+      {hvacResult}
+      <span className="text-lg mr-2">طن تبريد</span>
+    </div>
+    <p className="text-xs mt-3 text-gray-600">
+      هذه نتيجة مبدئية وتحتاج إلى مراجعة هندسية.
+    </p>
+  </div>
+)}
               </div>
             </div>
 
             {/* Fire Extinguisher Calculator */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
+            <div className="reveal reveal-delay-2 bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
               <h4 className="text-2xl font-bold mb-2">حاسبة طفايات الحريق التقريبية</h4>
               <p className="text-sm text-gray-500 mb-6">احسب العدد التقريبي لطفايات الحريق اليدوية بناءً على المساحة.</p>
               <div className="flex flex-col gap-4">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-1">المساحة الإجمالية للمكان (متر مربع):</label>
-                  <input
-                    type="number"
-                    value={fireArea}
-                    onChange={(e) => setFireArea(e.target.value === '' ? '' : Number(e.target.value))}
-                    placeholder="مثال: 1000"
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
-                  />
+                 <input
+  type="number"
+  min="1"
+  step="1"
+  value={fireArea}
+  onChange={(e) =>
+    setFireArea(
+      e.target.value === '' ? '' : Number(e.target.value)
+    )
+  }
+  placeholder="مثال: 1000"
+  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
+/>
                 </div>
                 <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2">احسب العدد</button>
                 {fireResult !== null && (
-                  <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">
-                    العدد التقديري: <span className="font-bold text-2xl mx-1">{fireResult}</span> طفايات حريق
-                  </div>
-                )}
+  <div className="mt-5 p-5 bg-accent text-primary rounded-xl border border-primary/20 text-center">
+    <p className="text-sm mb-2">
+      العدد التقديري لطفايات الحريق
+    </p>
+
+    <div className="text-3xl font-black">
+      {fireResult}
+      <span className="text-lg mr-2">طفايات</span>
+    </div>
+
+    <p className="text-xs mt-3 text-gray-600">
+      هذه نتيجة حسابية أولية وليست اعتماداً لتوزيع الطفايات.
+    </p>
+  </div>
+)}
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact/Footer */}
-        <section id="contact" className="py-20 bg-foreground text-white px-6 md:px-10">
+        <section id="contact" className="reveal py-20 bg-foreground text-white px-6 md:px-10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">لنتحدث حول مشروعك.</h2>
