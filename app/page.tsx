@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Home() {
   // Mobile Menu State
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Scroll & UI States for Smooth Experience
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Calculators State
   const [hvacArea, setHvacArea] = useState<number | ''>('');
@@ -19,6 +24,39 @@ export default function Home() {
   const [clientService, setClientService] = useState('');
   const [clientDetails, setClientDetails] = useState('');
   const [sendMethod, setSendMethod] = useState<'whatsapp' | 'gmail'>('whatsapp');
+
+  // Smooth Scroll & Navbar & Progress Effects (مثل الكود المرفق تماماً)
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      // 1. Navbar Scrolled Style
+      if (scrollY > 40) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // 2. Scroll Progress Bar Calculation
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+      setScrollProgress(scrollPercent);
+
+      // 3. Back to Top Button Visibility
+      if (scrollY > 450) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const calculateHvac = () => {
     if (typeof hvacArea === 'number' && hvacArea > 0) {
@@ -54,9 +92,16 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full bg-background text-foreground font-sans">
+    <div className="w-full bg-background text-foreground font-sans relative selection:bg-primary/20">
+      
+      {/* Scroll Progress Indicator Bar (الانسيابية البصرية) */}
+      <div 
+        className="fixed top-0 left-0 h-1 bg-primary z-60 transition-all duration-150 ease-out" 
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 bg-white/95 backdrop-blur-sm shadow-soft border-b border-gray-100">
+      <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
         <Link href="/" className="text-2xl font-bold text-primary transition-opacity hover:opacity-80">
           حمزة
         </Link>
@@ -72,7 +117,7 @@ export default function Home() {
         </a>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-primary p-2 focus:outline-none"
+          className="md:hidden text-primary p-2 focus:outline-none transition-transform active:scale-95"
           aria-label="القائمة"
         >
           {isMenuOpen ? (
@@ -88,14 +133,14 @@ export default function Home() {
       </nav>
 
       {/* Mobile Menu Overlay */}  
-      <div className={`fixed inset-0 z-40 bg-white transition-transform duration-300 ease-in-out transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden pt-24`}>  
-        <div className="flex flex-col items-center gap-8 text-xl font-bold text-gray-800">  
-          <Link href="#about" onClick={() => setIsMenuOpen(false)}>من نحن</Link>  
-          <Link href="#services" onClick={() => setIsMenuOpen(false)}>خدماتنا</Link>  
-          <Link href="#tools" onClick={() => setIsMenuOpen(false)}>أدوات هندسية</Link>  
-          <Link href="#portfolio" onClick={() => setIsMenuOpen(false)}>أعمالنا</Link>  
-          <Link href="#contact" onClick={() => setIsMenuOpen(false)}>تواصل معنا</Link>  
-          <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4">اطلب خدمة</a>  
+      <div className={`fixed inset-0 z-40 bg-white/98 backdrop-blur-lg transition-all duration-300 ease-in-out transform ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} md:hidden pt-28 px-6`}>  
+        <div className="flex flex-col items-center gap-6 text-xl font-bold text-gray-800">  
+          <Link href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">من نحن</Link>  
+          <Link href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">خدماتنا</Link>  
+          <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">أدوات هندسية</Link>  
+          <Link href="#portfolio" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">أعمالنا</Link>  
+          <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">تواصل معنا</Link>  
+          <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4 w-full text-center">اطلب خدمة</a>  
         </div>  
       </div>  
 
@@ -239,7 +284,7 @@ export default function Home() {
                 <button onClick={calculateHvac} className="btn-primary w-full mt-2 cursor-pointer">احسب السعة</button>  
                 
                 {hvacResult !== null && (
-                  <div className="mt-5 p-5 bg-gray-50 text-primary rounded-xl border border-primary/20 text-center">
+                  <div className="mt-5 p-5 bg-gray-50 text-primary rounded-xl border border-primary/20 text-center animate-fade-in">
                     <p className="text-sm mb-2 text-gray-700">السعة التقديرية المطلوبة</p>
                     <div className="text-3xl font-black">
                       {hvacResult}
@@ -273,7 +318,7 @@ export default function Home() {
                 <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2 cursor-pointer">احسب العدد</button>  
                 
                 {fireResult !== null && (
-                  <div className="mt-5 p-5 bg-gray-50 text-primary rounded-xl border border-primary/20 text-center">
+                  <div className="mt-5 p-5 bg-gray-50 text-primary rounded-xl border border-primary/20 text-center animate-fade-in">
                     <p className="text-sm mb-2 text-gray-700">العدد التقديري لطفايات الحريق</p>
                     <div className="text-3xl font-black">
                       {fireResult}
@@ -370,6 +415,17 @@ export default function Home() {
           </div>  
         </section>  
       </main>  
+
+      {/* Back to Top Floating Button (تظهر عند التمرير مثل الموقع المرفق) */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 left-6 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+        aria-label="العودة للأعلى"
+      >
+        ↑
+      </button>
+
     </div>
   );
 }
+ 
