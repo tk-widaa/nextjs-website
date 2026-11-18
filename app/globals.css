@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* تم تغيير الخلفية إلى أبيض ناصع البياض */
   --background: #ffffff;
   --foreground: #0f172a;
-  --primary: #1d4ed8; 
+  --primary: #1d4ed8;
   --primary-hover: #1e3a8a;
   --accent: #ffffff;
 }
@@ -26,78 +25,57 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utilities */
-.shadow-soft {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-}
-
-.card-hover {
-  transition: all 0.3s ease;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
-  border: 1px solid #f0ece1;
-}
-
-.card-hover:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-  transform: translateY(-4px);
-}
-
-.btn-primary {
-  background-color: var(--primary);
-  color: #fdfbf7;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-hover);
-}
-
-.fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* أكواد انسيابية الظهور عند التمرير (Scroll Reveal) */
-.reveal-ready .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-ready .reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
 }
 
-/* Scroll Reveal */
+/* Utilities & Shadows */
+.shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Cards Hover Effects */
+.card-hover {
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #f0ece1;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: #fdfbf7;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Scroll Reveal Animations */
 .reveal {
   opacity: 1;
   transform: none;
@@ -116,7 +94,7 @@ html.reveal-ready .reveal.is-visible {
   transform: translateY(0);
 }
 
-/* Stagger Animation */
+/* Stagger Animation Delays */
 .reveal-delay-1 {
   transition-delay: 0.1s !important;
 }
@@ -133,44 +111,38 @@ html.reveal-ready .reveal.is-visible {
   transition-delay: 0.4s !important;
 }
 
-/* Cards Hover */
-.card-hover {
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+/* Fade In Up (Alternative Animation) */
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.card-hover:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-  border-color: var(--primary);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Buttons */
-.btn-primary {
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* Accessibility */
+/* Accessibility: Reduce Motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
+  
   html.reveal-ready .reveal,
   html.reveal-ready .reveal.is-visible,
   .card-hover,
-  .btn-primary {
+  .btn-primary,
+  .fade-in-up {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+    animation: none !important;
   }
 }
