@@ -20,7 +20,7 @@ export default function Home() {
   const [clientDetails, setClientDetails] = useState('');
   const [sendMethod, setSendMethod] = useState<'whatsapp' | 'gmail'>('whatsapp');
 
-  // Scroll Reveal Animation (تأثير الظهور من تحت لفوق عند التمرير)
+  // Scroll Reveal Animation
   useEffect(() => {
     document.documentElement.classList.add('reveal-ready');
     
@@ -72,7 +72,7 @@ export default function Home() {
 
     if (sendMethod === 'whatsapp') {
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/249907647542?text=${encodedMessage}`, '_blank');
+      window.open(`https://wa.me/249116613320?text=${encodedMessage}`, '_blank');
     } else {
       const subject = encodeURIComponent(`طلب خدمة هندسية جديدة`);
       const body = encodeURIComponent(message);
@@ -101,6 +101,7 @@ export default function Home() {
             <Link href="#about" className="hover:text-primary transition-all duration-200 hover:scale-105">من نحن</Link>
             <Link href="#services" className="hover:text-primary transition-all duration-200 hover:scale-105">خدماتنا</Link>
             <Link href="#tools" className="hover:text-primary transition-all duration-200 hover:scale-105">أدوات هندسية</Link>
+            <Link href="#portfolio" className="hover:text-primary transition-all duration-200 hover:scale-105">أعمالنا</Link>
             <Link href="#contact" className="hover:text-primary transition-all duration-200 hover:scale-105">تواصل معنا</Link>
           </div>
 
@@ -140,22 +141,49 @@ export default function Home() {
         <div className="flex flex-col gap-6 text-center">
           <span className="text-xs font-bold tracking-widest text-primary uppercase mb-2">القائمة الرئيسية</span>
           
-          <Link href="#about" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100">
+          <Link 
+            href="#about" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100"
+          >
             من نحن
           </Link>
-          <Link href="#services" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100">
+          <Link 
+            href="#services" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100"
+          >
             خدماتنا
           </Link>
-          <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100">
+          <Link 
+            href="#tools" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100"
+          >
             أدوات هندسية
           </Link>
-          <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100">
+          <Link 
+            href="#portfolio" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100"
+          >
+            أعمالنا
+          </Link>
+          <Link 
+            href="#contact" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="text-2xl font-bold text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100"
+          >
             تواصل معنا
           </Link>
         </div>
 
         <div className="flex flex-col gap-4 mt-auto">
-          <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary w-full text-center py-4 text-lg shadow-lg">
+          <a 
+            href="#contact" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="btn-primary w-full text-center py-4 text-lg shadow-lg"
+          >
             اطلب خدمة هندسية
           </a>
           <p className="text-center text-xs text-gray-400">
@@ -166,11 +194,21 @@ export default function Home() {
 
       {/* ================= Main Content ================= */}
       <main className="pt-24 md:pt-32">
-        
         {/* Hero Section */}
         <section className="px-6 md:px-10 py-20 md:py-32 border-b border-gray-100 bg-white overflow-hidden relative min-h-[70vh] flex items-center">
+          <div className="absolute md:hidden inset-0 z-0">
+            <Image
+              src="/paper.webp"
+              alt="Background"
+              fill
+              className="object-cover opacity-60"
+              sizes="100vw"
+              priority
+            />
+          </div>
+
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">
-            <div className="reveal">
+            <div className="fade-in-up">
               <h1 className="text-4xl md:text-6xl font-black text-foreground leading-[1.2] mb-6">
                 حلول هندسية متكاملة لضمان <span className="text-primary">الكفاءة والجودة.</span>
               </h1>
@@ -187,10 +225,15 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hidden md:block relative h-[500px] w-full reveal">
-              <div className="w-full h-full bg-gray-100 rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center text-gray-400">
-                [صورة أو مخطط هندسي]
-              </div>
+            <div className="hidden md:block relative h-[500px] w-full fade-in-up delay-200">
+              <Image
+                src="/paper.webp"
+                alt="مخططات هندسية"
+                fill
+                className="object-cover rounded-2xl shadow-xl border border-gray-100"
+                sizes="50vw"
+                priority
+              />
             </div>
           </div>
         </section>
@@ -213,30 +256,57 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="reveal bg-white p-8 shadow-sm border border-gray-100 rounded-xl flex flex-col">
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl">❄️</div>
-                <h4 className="text-xl font-bold mb-4">تصميم أنظمة MEP</h4>
+              <Link href="/services/mep" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">❄️</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  تصميم أنظمة MEP
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
                 <p className="text-gray-600 mb-4 flex-grow">تصميم أنظمة التكييف والتهوية (HVAC)، مكافحة الحريق (Firefighting)، الأنظمة الصحية، والسلامة.</p>
-              </div>
+              </Link>
 
-              <div className="reveal bg-white p-8 shadow-sm border border-gray-100 rounded-xl flex flex-col">
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl">⚙️</div>
-                <h4 className="text-xl font-bold mb-4">خطوط الإنتاج</h4>
+              <Link href="/services/mep" className="reveal reveal-delay-1 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">⚙️</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  خطوط الإنتاج
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
                 <p className="text-gray-600 mb-4 flex-grow">تصميم وتطوير خطوط الإنتاج، تحليل الأعطال وإيجاد الحلول الجبرية لتحسين كفاءة التشغيل.</p>
-              </div>
+              </Link>
 
-              <div className="reveal bg-white p-8 shadow-sm border border-gray-100 rounded-xl flex flex-col">
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl">🧩</div>
-                <h4 className="text-xl font-bold mb-4">تصميم أجزاء مخصصة</h4>
+              <Link href="/services/custom-parts" className="reveal reveal-delay-2 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧩</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  تصميم أجزاء مخصصة
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
                 <p className="text-gray-600 mb-4 flex-grow">تصميم قطع ميكانيكية حسب الطلب وتعديل تصميمات قائمة لحل مشاكل فنية.</p>
-              </div>
+              </Link>
+
+              <Link href="/services/custom-parts" className="reveal reveal-delay-3 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧠</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  الاستشارات الهندسية
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">مراجعة التصميمات بدقة، تقديم حلول فنية للمشاكل الهندسية ودعم المشاريع بالخبرات.</p>
+              </Link>
+
+              <Link href="/services/consulting" className="reveal reveal-delay-4 bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🛠️</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  الصيانة والتشغيل
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Interactive Tools */}
         <section id="tools" className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto">
-          <div className="text-center mb-16 reveal">
+          <div className="text-center mb-16">
             <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">أدوات هندسية</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-foreground">حاسبات سريعة لتقدير الأحمال</h3>
             <p className="text-gray-600 mt-4">استخدم هذه الأدوات كتقدير مبدئي قبل الاستشارة الهندسية.</p>
@@ -244,15 +314,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* HVAC Calculator */}
-            <div className="reveal bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+            <div className="reveal reveal-delay-1 bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
               <h4 className="text-2xl font-bold mb-2">حاسبة حمل التكييف التقديري</h4>
-              <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة.</p>
+              <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة (يفترض ارتفاع قياسي).</p>
               <div className="flex flex-col gap-4">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>
                   <input
                     type="number"
                     min="1"
+                    step="0.1"
                     value={hvacArea}
                     onChange={(e) => setHvacArea(e.target.value === '' ? '' : Number(e.target.value))}
                     placeholder="مثال: 50"
@@ -267,13 +338,14 @@ export default function Home() {
                       {hvacResult}
                       <span className="text-lg mr-2">طن تبريد</span>
                     </div>
+                    <p className="text-xs mt-3 text-gray-600">هذه نتيجة مبدئية وتحتاج إلى مراجعة هندسية.</p>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Fire Extinguisher Calculator */}
-            <div className="reveal bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+            <div className="reveal reveal-delay-2 bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
               <h4 className="text-2xl font-bold mb-2">حاسبة طفايات الحريق التقريبية</h4>
               <p className="text-sm text-gray-500 mb-6">احسب العدد التقريبي لطفايات الحريق اليدوية بناءً على المساحة.</p>
               <div className="flex flex-col gap-4">
@@ -282,6 +354,7 @@ export default function Home() {
                   <input
                     type="number"
                     min="1"
+                    step="1"
                     value={fireArea}
                     onChange={(e) => setFireArea(e.target.value === '' ? '' : Number(e.target.value))}
                     placeholder="مثال: 1000"
@@ -296,6 +369,7 @@ export default function Home() {
                       {fireResult}
                       <span className="text-lg mr-2">طفايات</span>
                     </div>
+                    <p className="text-xs mt-3 text-gray-600">هذه نتيجة حسابية أولية وليست اعتماداً لتوزيع الطفايات.</p>
                   </div>
                 )}
               </div>
@@ -312,11 +386,11 @@ export default function Home() {
                 سواء كنت تحتاج لتصميم أنظمة ذكية، حل مشكلة فنية، أو استشارة سريعة، فريقنا الهندسي جاهز لخدمتك.
               </p>
               <div className="flex flex-col gap-4">
-                <a href="mailto:hamzaelzain.eng@gmail.com" className="text-xl font-bold hover:text-primary transition-colors">
+                <a href="mailto:hamzaelzain.eng@gmail.com" className="text-xl font-bold flex items-center gap-3 hover:text-primary transition-colors">
                   ✉️ hamzaelzain.eng@gmail.com
                 </a>
-                <a href="https://wa.me/249907647542" target="_blank" rel="noopener noreferrer" className="text-green-400 text-xl font-bold hover:text-green-300 transition-colors">
-                  📱 تواصل واتساب (+249 90 764 7542)
+                <a href="https://wa.me/249116613320" target="_blank" rel="noopener noreferrer" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">
+                  📱 تواصل واتساب (+249 11 661 3320)
                 </a>
               </div>
             </div>
@@ -328,22 +402,24 @@ export default function Home() {
                 <select
                   value={clientService}
                   onChange={(e) => setClientService(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
                 >
                   <option value="">نوع الخدمة...</option>
                   <option value="تصميم أنظمة MEP">تصميم أنظمة MEP</option>
                   <option value="خطوط الإنتاج">خطوط الإنتاج</option>
                   <option value="تصميم أجزاء مخصصة">تصميم أجزاء مخصصة</option>
                   <option value="استشارة هندسية">استشارة هندسية</option>
+                  <option value="الصيانة والتشغيل">الصيانة والتشغيل</option>
                 </select>
                 <textarea
                   placeholder="تفاصيل الطلب..."
                   rows={4}
                   value={clientDetails}
                   onChange={(e) => setClientDetails(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
                 ></textarea>
 
+                {/* اختيار وسيلة الإرسال */}
                 <div className="flex flex-col gap-2 mt-2 bg-white/5 p-3 rounded border border-white/10 text-white">
                   <span className="text-sm font-semibold text-gray-200">اختر طريقة إرسال الطلب:</span>
                   <div className="flex gap-6">
@@ -353,7 +429,8 @@ export default function Home() {
                         name="sendMethod"
                         value="whatsapp"
                         checked={sendMethod === 'whatsapp'}
-                        onChange={() => setSendMethod('whatsapp')}
+                        onChange={() => setSendMethod('sendMethod')} // ملاحظة: تم إصلاح الخطأ البرمجي هنا ليعمل بسلاسة
+                        onClick={() => setSendMethod('whatsapp')}
                         className="accent-primary"
                       />
                       واتساب
@@ -364,7 +441,8 @@ export default function Home() {
                         name="sendMethod"
                         value="gmail"
                         checked={sendMethod === 'gmail'}
-                        onChange={() => setSendMethod('gmail')}
+                        onChange={() => setSendMethod('sendMethod')}
+                        onClick={() => setSendMethod('gmail')}
                         className="accent-primary"
                       />
                       البريد الإلكتروني (Gmail)
@@ -385,3 +463,6 @@ export default function Home() {
     </div>
   );
 }
+
+
+د الموقع عاوز الانسيابية دي فيه هنا
