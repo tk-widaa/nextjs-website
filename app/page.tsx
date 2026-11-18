@@ -65,8 +65,10 @@ const observer = new IntersectionObserver(
     entries.forEach((entry) => {  
       if (entry.isIntersecting) {  
         entry.target.classList.add('reveal-visible');  
-        observer.unobserve(entry.target);  
-      }  
+      } 
+      else {
+  entry.target.classList.remove('reveal-visible');
+}
     });  
   },  
   {  
@@ -84,6 +86,8 @@ elements.forEach((element, index) => {
       '#services .grid > a, #tools .grid > div'  
     )  
   ) {  
+    
+    
     const cardIndex = Array.from(  
       element.parentElement?.children || []  
     ).indexOf(element);  
