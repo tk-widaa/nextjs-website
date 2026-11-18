@@ -21,15 +21,19 @@ const [clientDetails, setClientDetails] = useState('');
 const [sendMethod, setSendMethod] = useState<'whatsapp' | 'gmail'>('whatsapp');
 
 const calculateHvac = () => {
-if (hvacArea && typeof hvacArea === 'number') {
-setHvacResult(Number((hvacArea / 12).toFixed(1)));
-}
+  if (typeof hvacArea === 'number' && hvacArea > 0) {
+    setHvacResult(Number((hvacArea / 12).toFixed(1)));
+  } else {
+    setHvacResult(null);
+  }
 };
 
 const calculateFireExtinguisher = () => {
-if (fireArea && typeof fireArea === 'number') {
-setFireResult(Math.ceil(fireArea / 200));
-}
+  if (typeof fireArea === 'number' && fireArea > 0) {
+    setFireResult(Math.ceil(fireArea / 200));
+  } else {
+    setFireResult(null);
+  }
 };
 
 const handleSubmitOrder = (e: React.FormEvent) => {
@@ -224,20 +228,46 @@ aria-label="القائمة"
           <div className="flex flex-col gap-4">  
             <div>  
               <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>  
-              <input  
-                type="number"  
-                value={hvacArea}  
-                onChange={(e) => setHvacArea(e.target.value === '' ? '' : Number(e.target.value))}  
-                placeholder="مثال: 50"  
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"  
-              />  
+             <input
+  type="number"
+  min="1"
+  step="0.1"
+  value={hvacArea}
+  onChange={(e) =>
+    setHvacArea(
+      e.target.value === '' ? '' : Number(e.target.value)
+    )
+  }
+  placeholder="مثال: 50"
+  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
+/>
             </div>  
             <button onClick={calculateHvac} className="btn-primary w-full mt-2">احسب السعة</button>  
-            {hvacResult !== null && (  
-              <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">  
-                السعة المطلوبة تقريباً: <span className="font-bold text-2xl mx-1">{hvacResult}</span> طن تبريد  
-              </div>  
-            )}  
+            {hvacResult !== null && (
+  <div className="mt-5 p-5 bg-accent text-primary rounded-xl border border-primary/20 text-center">
+    <p className="text-sm mb-2">السعة التقديرية المطلوبة</p>
+    <div className="text-3xl font-black">
+      {hvacResult}
+      <span className="text-lg mr-2">طن تبريد</span>
+    </div>
+    <p className="text-xs mt-3 text-gray-600">
+      هذه نتيجة مبدئية وتحتاج إلى مراجعة هندسية.
+    </p>
+  </div>
+)}
+
+{hvacResult !== null && (
+  <div className="mt-5 p-5 bg-accent text-primary rounded-xl border border-primary/20 text-center">
+    <p className="text-sm mb-2">السعة التقديرية المطلوبة</p>
+    <div className="text-3xl font-black">
+      {hvacResult}
+      <span className="text-lg mr-2">طن تبريد</span>
+    </div>
+    <p className="text-xs mt-3 text-gray-600">
+      هذه نتيجة مبدئية وتحتاج إلى مراجعة هندسية.
+    </p>
+  </div>
+)}
           </div>  
         </div>  
 
@@ -248,20 +278,37 @@ aria-label="القائمة"
           <div className="flex flex-col gap-4">  
             <div>  
               <label className="block text-sm font-bold text-gray-700 mb-1">المساحة الإجمالية للمكان (متر مربع):</label>  
-              <input  
-                type="number"  
-                value={fireArea}  
-                onChange={(e) => setFireArea(e.target.value === '' ? '' : Number(e.target.value))}  
-                placeholder="مثال: 1000"  
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none bg-white"  
-              />  
+              <input
+  type="number"
+  min="1"
+  step="1"
+  value={fireArea}
+  onChange={(e) =>
+    setFireArea(
+      e.target.value === '' ? '' : Number(e.target.value)
+    )
+  }
+  placeholder="مثال: 1000"
+  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:outline-none bg-white"
+/> 
             </div>  
             <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2">احسب العدد</button>  
-            {fireResult !== null && (  
-              <div className="mt-4 p-4 bg-accent text-primary rounded-md border border-primary/20 text-center text-lg">  
-                العدد التقديري: <span className="font-bold text-2xl mx-1">{fireResult}</span> طفايات حريق  
-              </div>  
-            )}  
+            {fireResult !== null && (
+  <div className="mt-5 p-5 bg-accent text-primary rounded-xl border border-primary/20 text-center">
+    <p className="text-sm mb-2">
+      العدد التقديري لطفايات الحريق
+    </p>
+
+    <div className="text-3xl font-black">
+      {fireResult}
+      <span className="text-lg mr-2">طفايات</span>
+    </div>
+
+    <p className="text-xs mt-3 text-gray-600">
+      هذه نتيجة حسابية أولية وليست اعتماداً لتوزيع الطفايات.
+    </p>
+  </div>
+)}  
           </div>  
         </div>  
       </div>  
