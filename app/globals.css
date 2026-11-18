@@ -172,7 +172,7 @@ html.reveal-ready .reveal.is-visible {
 .reveal-element {
   opacity: 0;
   transform: translateY(32px);
-  filter: blur(5px);
+  filter: none;
 
   transition:
     opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
