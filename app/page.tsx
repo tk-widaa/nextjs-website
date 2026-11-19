@@ -163,9 +163,9 @@ return () => observer.disconnect();
           <Link href="#portfolio" className="hover:text-primary transition-colors">أعمالنا</Link>
           <Link href="#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
         </div>
-        <a href="#contact" className="btn-primary text-sm hidden md:flex">
-          اطلب خدمة
-        </a>
+     
+     
+     
         
         
        <button
