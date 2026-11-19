@@ -303,23 +303,26 @@ return () => observer.disconnect();
                 <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>  
               </Link>  
               
-<Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+<Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-row items-start gap-6 group block">
 
   <img
     src="/images/Profile/Software.jpg"
     alt="تطوير وتصميم مواقع الويب"
-    className="w-full h-48 object-cover object-left rounded-lg mb-6"
+    className="w-40 h-40 object-cover object-left rounded-lg shrink-0"
   />
 
-  <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">💻</div>
+  <div className="flex flex-col flex-1 min-w-0">
 
-  <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
-    تطوير و تصميم مواقع الويب
-    <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
-  </h4>
+    <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">💻</div>
 
-  <p className="text-gray-600 mb-4 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>
+    <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+      تطوير و تصميم مواقع الويب
+      <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+    </h4>
 
+    <p className="text-gray-600 mb-4 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>
+
+  </div>
 </Link>
               
               
