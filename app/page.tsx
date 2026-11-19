@@ -57,7 +57,7 @@ export default function Home() {
 // Professional Scroll Reveal Animation
 useEffect(() => {
 const elements = document.querySelectorAll(
-'main h1, main h2, main h3, main h4, main p, main .btn-primary, main #services .grid > a, main #tools .grid > div, main img'
+'main h1, main h2, main h3, main h4, main p, main .btn-primary, main #services .grid > a, main #tools .grid > div, main section img'
 );
 
 const observer = new IntersectionObserver(  
