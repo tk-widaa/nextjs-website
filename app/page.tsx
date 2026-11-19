@@ -154,7 +154,7 @@ return () => observer.disconnect();
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
         <Link href="/" className="text-2xl font-bold text-primary transition-opacity hover:opacity-80">
-          حمزة
+          معيار
         </Link>
         <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
           <Link href="#about" className="hover:text-primary transition-colors">من نحن</Link>
@@ -278,7 +278,8 @@ return () => observer.disconnect();
                 حلول هندسية متكاملة لضمان <span className="text-primary">الكفاءة والجودة.</span>  
               </h1>  
               <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed max-w-xl">  
-                مؤسسة "حمزة" متخصصة في تقديم الحلول الهندسية المتكاملة في مجالات أنظمة المباني وخطوط الإنتاج. ننهض بمشاريعك بحلول مبتكرة وعملية.  
+                مؤسسة معيار بقيادة المهندس / حمزة متخصصة في تقديم الحلول الهندسية المتكاملة في مجالات أنظمة المباني وخطوط الإنتاج، ننهض بمشاريعك بحلول مبتكرة وعملية.
+              
               </p>  
               <div className="flex flex-col sm:flex-row gap-4">  
                 <Link href="#contact" className="btn-primary text-lg px-8">  
@@ -536,7 +537,7 @@ return () => observer.disconnect();
           </div>  
 
           <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">  
-            <span>&copy; {new Date().getFullYear()} مؤسسة حمزة للحلول الهندسية. جميع الحقوق محفوظة.</span>  
+            <span>&copy; {new Date().getFullYear()} مؤسسة معيار للحلول الهندسية. جميع الحقوق محفوظة.</span>  
           </div>  
         </section>  
       </main>  
