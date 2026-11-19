@@ -164,7 +164,7 @@ return () => observer.disconnect();
               alt="شعار معيار" 
               fill
               sizes="32px"
-              className="object-cover border-2 border-primary "
+              className="object-cover"
               priority
             />
           </div>
