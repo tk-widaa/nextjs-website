@@ -311,7 +311,7 @@ return () => observer.disconnect();
   <img
     src="/images/Profile/Software.jpg"
     alt="تطوير وتصميم مواقع الويب"
-    className="absolute inset-0 w-30% h-30% object-left opacity-20 transition-transform duration-500 group-hover:scale-105"
+    className="absolute inset-0 w-[30%] h-[30%] object-left opacity-20 transition-transform duration-500 group-hover:scale-105"
   />
 
   {/* Overlay */}
