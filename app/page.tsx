@@ -259,7 +259,7 @@ return () => observer.disconnect();
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">  
               <Link href="/services/mep" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">❄️</div>  
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">❄️</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   تصميم أنظمة MEP  
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
@@ -268,7 +268,7 @@ return () => observer.disconnect();
               </Link>  
 
               <Link href="/services/production-lines" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">⚙️</div>  
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">⚙️</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   خطوط الإنتاج  
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
@@ -277,7 +277,7 @@ return () => observer.disconnect();
               </Link>  
 
               <Link href="/services/custom-parts" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧩</div>  
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🧩</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   تصميم أجزاء مخصصة  
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
@@ -286,7 +286,7 @@ return () => observer.disconnect();
               </Link>  
 
               <Link href="/services/consulting" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🧠</div>  
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🧠</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   الاستشارات الهندسية  
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
@@ -295,7 +295,7 @@ return () => observer.disconnect();
               </Link>  
 
               <Link href="/services/online-maintenance" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">🛠️</div>  
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🛠️</div>  
                 <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
                   الصيانة والتشغيل  
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
@@ -303,38 +303,14 @@ return () => observer.disconnect();
                 <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>  
               </Link>  
               
-<Link
-  href="/services/software"
-  className="relative overflow-hidden bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block"
->
-  {/* Background Image */}
-  <img
-    src="/images/Profile/Software.jpg"
-    alt="تطوير وتصميم مواقع الويب"
-    className="absolute inset-0 w-[85%] h-[85%] object-Right opacity-20 transition-transform duration-500 group-hover:scale-105"
-  />
-
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/85 to-white"></div>
-
-  {/* Content */}
-  <div className="relative z-10">
-
-    <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
-      💻
-    </div>
-
-    <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
-      تطوير و تصميم مواقع الويب
-      <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
-    </h4>
-
-    <p className="text-gray-600 mb-4">
-      نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.
-    </p>
-
-  </div>
-</Link>
+ <Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">      
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">💻</div>      
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">      
+                  تطوير و تصميم مواقع الويب     
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>      
+                </h4>      
+                <p className="text-gray-600 mb-4 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>      
+              </Link>
               
               
             </div>  
