@@ -503,7 +503,8 @@ return () => observer.disconnect();
                   <option value="خطوط الإنتاج">خطوط الإنتاج</option>  
                   <option value="تصميم أجزاء مخصصة">تصميم أجزاء مخصصة</option>  
                   <option value="استشارة هندسية">استشارة هندسية</option>  
-                  <option value="الصيانة والتشغيل">الصيانة والتشغيل</option>  
+                  <option value="الصيانة والتشغيل">الصيانة والتشغيل</option>
+                  <option value="تطوير و تصميم مواقع الويب">تطوير و تصميم مواقع الويب</option> 
                 </select>  
                 <textarea  
                   placeholder="تفاصيل الطلب..."  
