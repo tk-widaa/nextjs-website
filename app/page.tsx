@@ -157,18 +157,19 @@ return () => observer.disconnect();
       <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
         
         {/* الشعار واسم الموقع */}
-          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
-   <img 
-  src="/images/Profile/favicon.jpg" 
-  alt="شعار معيار" 
-  className="w-8 h-8 object-contain opacity-100 transform-none transition-none" 
-  style={{ opacity: 1, transform: 'none' }}
-/>
-
-
-    <span>معيار</span>
-  </Link>
-
+        <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <Image 
+              src="/images/Profile/favicon.jpg" 
+              alt="شعار معيار" 
+              fill
+              sizes="32px"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <span>معيار</span>
+        </Link>
 
         {/* روابط الديسك톱 */}
         <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
