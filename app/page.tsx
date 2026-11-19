@@ -157,7 +157,7 @@ return () => observer.disconnect();
      <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
   
   <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
-    <img src="/images/Profile/favicon.ico" alt="شعار معيار" className="w-8 h-8 object-contain" />
+    <img src="/images/Profile/favicon.jpg" alt="شعار معيار" className="w-8 h-8 object-contain" />
     <span>معيار</span>
   </Link>
 
