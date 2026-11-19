@@ -166,34 +166,97 @@ return () => observer.disconnect();
         <a href="#contact" className="btn-primary text-sm hidden md:flex">
           اطلب خدمة
         </a>
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-primary p-2 focus:outline-none transition-transform active:scale-95"
-          aria-label="القائمة"
-        >
-          {isMenuOpen ? (
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
+        
+        
+       <button
+  onClick={() => setIsMenuOpen(!isMenuOpen)}
+  className="md:hidden text-primary p-2 focus:outline-none active:scale-95 transition-transform"
+  aria-label="القائمة"
+>
+  <svg
+    className="w-7 h-7"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+  >
+    <path
+      d="M4 6H20"
+      className={`transition-all duration-300 origin-center ${
+        isMenuOpen ? "translate-y-[6px] rotate-45" : ""
+      }`}
+    />
+
+    <path
+      d="M4 12H20"
+      className={`transition-all duration-300 ${
+        isMenuOpen ? "opacity-0 scale-0" : "opacity-100"
+      }`}
+    />
+
+    <path
+      d="M4 18H20"
+      className={`transition-all duration-300 origin-center ${
+        isMenuOpen ? "-translate-y-[6px] -rotate-45" : ""
+      }`}
+    />
+  </svg>
+</button>
+
       </nav>
 
       {/* Mobile Menu Overlay */}  
-      <div className={`fixed inset-0 z-40 bg-white/98 backdrop-blur-lg transition-all duration-300 ease-in-out transform ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} md:hidden pt-28 px-6`}>  
-        <div className="flex flex-col items-center gap-6 text-xl font-bold text-gray-800">  
-          <Link href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">من نحن</Link>  
-          <Link href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">خدماتنا</Link>  
-          <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">أدوات هندسية</Link>  
-          <Link href="#portfolio" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">أعمالنا</Link>  
-          <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">تواصل معنا</Link>  
-          <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4 w-full text-center">اطلب خدمة</a>  
-        </div>  
-      </div>  
+      <div
+  className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ease-in-out ${
+    isMenuOpen
+      ? 'visible opacity-100'
+      : 'invisible opacity-0 pointer-events-none'
+  }`}
+>
+  {/* الخلفية الشفافة */}
+  <div
+    onClick={() => setIsMenuOpen(false)}
+    className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+  ></div>
+
+  {/* القائمة الجانبية */}
+  <div
+    className={`absolute top-0 right-0 h-full w-[75%] bg-white/98 backdrop-blur-xl shadow-2xl pt-28 px-6 transition-transform duration-500 ease-in-out ${
+      isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+    }`}
+  >
+    <div className="flex flex-col items-center gap-6 text-xl font-bold text-gray-800">
+
+      <Link href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+        من نحن
+      </Link>
+
+      <Link href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+        خدماتنا
+      </Link>
+
+      <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+        أدوات هندسية
+      </Link>
+
+      <Link href="#portfolio" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+        أعمالنا
+      </Link>
+
+      <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+        تواصل معنا
+      </Link>
+
+      <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4 w-full text-center">
+        اطلب خدمة
+      </a>
+
+    </div>
+  </div>
+</div> 
+
+
 
       <main className="pt-24 md:pt-32">  
         {/* Hero Section */}  
