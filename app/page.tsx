@@ -302,6 +302,17 @@ return () => observer.disconnect();
                 </h4>  
                 <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>  
               </Link>  
+              
+ <Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">💻</div>  
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
+                  تطوير و تصميم مواقع الويب 
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
+                </h4>  
+                <p className="text-gray-600 mb-4 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>  
+              </Link>
+              
+              
             </div>  
           </div>  
         </section>  
