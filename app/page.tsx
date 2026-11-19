@@ -552,16 +552,42 @@ return () => observer.disconnect();
             <span>&copy; {new Date().getFullYear()} مؤسسة معيار للحلول الهندسية. جميع الحقوق محفوظة.</span>  
           </div>  
         </section>  
+        
+        {/* زر الرجوع الى اعلى الصفحه*/}
+<button
+  onClick={scrollToTop}
+  className={`fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full
+    bg-primary text-white
+    border border-white/20
+    shadow-xl shadow-primary/20
+    flex items-center justify-center
+    transition-all duration-500 ease-out
+    hover:scale-110 hover:shadow-primary/40
+    active:scale-90
+    group
+    ${showBackToTop
+      ? 'opacity-100 translate-y-0'
+      : 'opacity-0 translate-y-12 pointer-events-none'
+    }`}
+  aria-label="العودة للأعلى"
+>
+  <svg
+    className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.5"
+      d="M5 12l7-7 7 7M12 5v14"
+    />
+  </svg>
+</button>
       </main>  
 
-      {/* Back to Top Floating Button (تظهر عند التمرير مثل الموقع المرفق) */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-6 left-6 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
-        aria-label="العودة للأعلى"
-      >
-        ↑
-      </button>
+      
 
     </div>
   );
