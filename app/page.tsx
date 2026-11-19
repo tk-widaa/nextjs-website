@@ -151,19 +151,25 @@ return () => observer.disconnect();
         style={{ width: `${scrollProgress}%` }}
       />
 
+
+
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
-        <Link href="/" className="text-2xl font-bold text-primary transition-opacity hover:opacity-80">
-          معيار
-        </Link>
-        <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
-          <Link href="#about" className="hover:text-primary transition-colors">من نحن</Link>
-          <Link href="#services" className="hover:text-primary transition-colors">خدماتنا</Link>
-          <Link href="#tools" className="hover:text-primary transition-colors">أدوات هندسية</Link>
-          <Link href="#portfolio" className="hover:text-primary transition-colors">أعمالنا</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
-        </div>
-     
+     <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
+  
+  <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
+    <img src="/images/Profile/favicon.ico" alt="شعار معيار" className="w-8 h-8 object-contain" />
+    <span>معيار</span>
+  </Link>
+
+  <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
+    <Link href="#about" className="hover:text-primary transition-colors">من نحن</Link>
+    <Link href="#services" className="hover:text-primary transition-colors">خدماتنا</Link>
+    <Link href="#tools" className="hover:text-primary transition-colors">أدوات هندسية</Link>
+    <Link href="#portfolio" className="hover:text-primary transition-colors">أعمالنا</Link>
+    <Link href="#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
+  </div>
+</nav>
+
      
      
         
