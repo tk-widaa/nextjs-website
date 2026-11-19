@@ -154,70 +154,68 @@ return () => observer.disconnect();
 
 
       {/* Navigation */}
-     <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
-  
-  <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
-   <img 
-  src="/images/Profile/favicon.jpg" 
-  alt="شعار معيار" 
-  className="w-8 h-8 object-contain opacity-100 transform-none transition-none" 
-  style={{ opacity: 1, transform: 'none' }}
-/>
-
-
-    <span>معيار</span>
-  </Link>
-
-  <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
-    <Link href="#about" className="hover:text-primary transition-colors">من نحن</Link>
-    <Link href="#services" className="hover:text-primary transition-colors">خدماتنا</Link>
-    <Link href="#tools" className="hover:text-primary transition-colors">أدوات هندسية</Link>
-    <Link href="#portfolio" className="hover:text-primary transition-colors">أعمالنا</Link>
-    <Link href="#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
-  </div>
-</nav>
-
-     
-     
+      <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
         
-        
-       <button
-  onClick={() => setIsMenuOpen(!isMenuOpen)}
-  className="md:hidden text-primary p-2 focus:outline-none active:scale-95 transition-transform"
-  aria-label="القائمة"
->
-  <svg
-    className="w-7 h-7"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-  >
-    <path
-      d="M4 6H20"
-      className={`transition-all duration-300 origin-center ${
-        isMenuOpen ? "translate-y-[6px] rotate-45" : ""
-      }`}
-    />
+        {/* الشعار واسم الموقع */}
+        <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <Image 
+              src="/images/Profile/favicon.jpg" 
+              alt="شعار معيار" 
+              fill
+              sizes="32px"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <span>معيار</span>
+        </Link>
 
-    <path
-      d="M4 12H20"
-      className={`transition-all duration-300 ${
-        isMenuOpen ? "opacity-0 scale-0" : "opacity-100"
-      }`}
-    />
+        {/* روابط الديسك톱 */}
+        <div className="hidden md:flex gap-6 text-sm font-semibold text-gray-700">
+          <Link href="#about" className="hover:text-primary transition-colors">من نحن</Link>
+          <Link href="#services" className="hover:text-primary transition-colors">خدماتنا</Link>
+          <Link href="#tools" className="hover:text-primary transition-colors">أدوات هندسية</Link>
+          <Link href="#portfolio" className="hover:text-primary transition-colors">أعمالنا</Link>
+          <Link href="#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
+        </div>
 
-    <path
-      d="M4 18H20"
-      className={`transition-all duration-300 origin-center ${
-        isMenuOpen ? "-translate-y-[6px] -rotate-45" : ""
-      }`}
-    />
-  </svg>
-</button>
-
+        {/* زر القائمة للهواتف (مدمج داخل النافبار بشكل صحيح) */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden text-primary p-2 focus:outline-none active:scale-95 transition-transform"
+          aria-label="القائمة"
+        >
+          <svg
+            className="w-7 h-7"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          >
+            <path
+              d="M4 6H20"
+              className={`transition-all duration-300 origin-center ${
+                isMenuOpen ? "translate-y-[6px] rotate-45" : ""
+              }`}
+            />
+            <path
+              d="M4 12H20"
+              className={`transition-all duration-300 ${
+                isMenuOpen ? "opacity-0 scale-0" : "opacity-100"
+              }`}
+            />
+            <path
+              d="M4 18H20"
+              className={`transition-all duration-300 origin-center ${
+                isMenuOpen ? "-translate-y-[6px] -rotate-45" : ""
+              }`}
+            />
+          </svg>
+        </button>
       </nav>
+
 
       {/* Mobile Menu Overlay */}  
       <div
