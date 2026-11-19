@@ -303,24 +303,35 @@ return () => observer.disconnect();
                 <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>  
               </Link>  
               
-<Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-row items-start gap-6 group block">
-
+<Link
+  href="/services/software"
+  className="relative overflow-hidden bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block"
+>
+  {/* Background Image */}
   <img
     src="/images/Profile/Software.jpg"
     alt="تطوير وتصميم مواقع الويب"
-    className="w-40 h-40 object-cover object-left rounded-lg shrink-0"
+    className="absolute inset-0 w-full h-full object-cover object-left opacity-20 transition-transform duration-500 group-hover:scale-105"
   />
 
-  <div className="flex flex-col flex-1 min-w-0">
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/85 to-white"></div>
 
-    <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">💻</div>
+  {/* Content */}
+  <div className="relative z-10">
+
+    <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+      💻
+    </div>
 
     <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
       تطوير و تصميم مواقع الويب
       <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
     </h4>
 
-    <p className="text-gray-600 mb-4 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>
+    <p className="text-gray-600 mb-4">
+      نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.
+    </p>
 
   </div>
 </Link>
