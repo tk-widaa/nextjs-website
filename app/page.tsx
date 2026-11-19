@@ -160,7 +160,7 @@ return () => observer.disconnect();
         <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
           <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
             <Image 
-              src="/images/Profile/favicon.jpg" 
+              src="/images/Profile/logo.jpg" 
               alt="شعار معيار" 
               fill
               sizes="32px"
