@@ -54,56 +54,56 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-// Professional Scroll Reveal Animation
-useEffect(() => {
-const elements = document.querySelectorAll(
-'main h1, main h2, main h3, main h4, main p, main .btn-primary, main #services .grid > a, main #tools .grid > div, main section img'
-);
+  // Professional Scroll Reveal Animation
+  useEffect(() => {
+    const elements = document.querySelectorAll(
+      'main h1, main h2, main h3, main h4, main p, main .btn-primary, main #services .grid > a, main #tools .grid > div, main section img'
+    );
 
-const observer = new IntersectionObserver(  
-  (entries) => {  
-    entries.forEach((entry) => {  
-      if (entry.isIntersecting) {  
-        entry.target.classList.add('reveal-visible');  
-      } 
-      else {
-  entry.target.classList.remove('reveal-visible');
-}
-    });  
-  },  
-  {  
-    threshold: 0.12,  
-    rootMargin: '0px 0px -40px 0px',  
-  }  
-);  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+          }
+          else {
+            entry.target.classList.remove('reveal-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
 
-elements.forEach((element, index) => {  
-  element.classList.add('reveal-element');  
+    elements.forEach((element, index) => {
+      element.classList.add('reveal-element');
 
-  // Stagger animation for cards  
-  if (  
-    element.matches(  
-      '#services .grid > a, #tools .grid > div'  
-    )  
-  ) {  
-    
-    
-    const cardIndex = Array.from(  
-      element.parentElement?.children || []  
-    ).indexOf(element);  
+      // Stagger animation for cards  
+      if (
+        element.matches(
+          '#services .grid > a, #tools .grid > div'
+        )
+      ) {
 
-    element.classList.add('reveal-card');  
-    (element as HTMLElement).style.setProperty(  
-      '--reveal-delay',  
-      `${cardIndex * 120}ms`  
-    );  
-  }  
 
-  observer.observe(element);  
-});  
+        const cardIndex = Array.from(
+          element.parentElement?.children || []
+        ).indexOf(element);
 
-return () => observer.disconnect();
-}, []);
+        element.classList.add('reveal-card');
+        (element as HTMLElement).style.setProperty(
+          '--reveal-delay',
+          `${cardIndex * 120}ms`
+        );
+      }
+
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -128,26 +128,26 @@ return () => observer.disconnect();
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const message = `السلام عليكم، أود طلب خدمة هندسية:\n\n` +  
-      `⚙️ نوع الخدمة: ${clientService || 'غير محدد'}\n` +  
-      `📝 التفاصيل: ${clientDetails || 'لا توجد تفاصيل إضافية'}`;  
+    const message = `السلام عليكم، أود طلب خدمة هندسية:\n\n` +
+      `⚙️ نوع الخدمة: ${clientService || 'غير محدد'}\n` +
+      `📝 التفاصيل: ${clientDetails || 'لا توجد تفاصيل إضافية'}`;
 
-    if (sendMethod === 'whatsapp') {  
-      const encodedMessage = encodeURIComponent(message);  
-      window.open(`https://wa.me/249116613320?text=${encodedMessage}`, '_blank');  
-    } else {  
-      const subject = encodeURIComponent(`طلب خدمة هندسية جديدة`);  
-      const body = encodeURIComponent(message);  
-      window.location.href = `mailto:hamzaelzain.eng@gmail.com?subject=${subject}&body=${body}`;  
+    if (sendMethod === 'whatsapp') {
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/249116613320?text=${encodedMessage}`, '_blank');
+    } else {
+      const subject = encodeURIComponent(`طلب خدمة هندسية جديدة`);
+      const body = encodeURIComponent(message);
+      window.location.href = `mailto:hamzaelzain.eng@gmail.com?subject=${subject}&body=${body}`;
     }
   };
 
   return (
     <div className="w-full bg-background text-foreground font-sans relative selection:bg-primary/20">
-      
+
       {/* Scroll Progress Indicator Bar (الانسيابية البصرية) */}
-      <div 
-        className="fixed top-0 left-0 h-1 bg-primary z-60 transition-all duration-150 ease-out" 
+      <div
+        className="fixed top-0 left-0 h-1 bg-primary z-60 transition-all duration-150 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
 
@@ -155,13 +155,13 @@ return () => observer.disconnect();
 
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 w-full p-4 md:px-10 flex justify-between items-center z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white/80 backdrop-blur-sm py-4'} border-b border-gray-100`}>
-        
+
         {/* الشعار واسم الموقع */}
         <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary transition-opacity hover:opacity-80">
           <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
-            <Image 
-              src="/images/Profile/logo.jpg" 
-              alt="شعار معيار" 
+            <Image
+              src="/images/Profile/logo.jpg"
+              alt="شعار معيار"
               fill
               sizes="32px"
               className="object-cover"
@@ -196,218 +196,221 @@ return () => observer.disconnect();
           >
             <path
               d="M4 6H20"
-              className={`transition-all duration-300 origin-center ${
-                isMenuOpen ? "translate-y-[6px] rotate-45" : ""
-              }`}
+              className={`transition-all duration-300 origin-center ${isMenuOpen ? "translate-y-[6px] rotate-45" : ""
+                }`}
             />
             <path
               d="M4 12H20"
-              className={`transition-all duration-300 ${
-                isMenuOpen ? "opacity-0 scale-0" : "opacity-100"
-              }`}
+              className={`transition-all duration-300 ${isMenuOpen ? "opacity-0 scale-0" : "opacity-100"
+                }`}
             />
             <path
               d="M4 18H20"
-              className={`transition-all duration-300 origin-center ${
-                isMenuOpen ? "-translate-y-[6px] -rotate-45" : ""
-              }`}
+              className={`transition-all duration-300 origin-center ${isMenuOpen ? "-translate-y-[6px] -rotate-45" : ""
+                }`}
             />
           </svg>
         </button>
       </nav>
 
 
-      {/* Mobile Menu Overlay */}  
+      {/* Mobile Menu Overlay */}
       <div
-  className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ease-in-out ${
-    isMenuOpen
-      ? 'visible opacity-100'
-      : 'invisible opacity-0 pointer-events-none'
-  }`}
->
-  {/* الخلفية الشفافة */}
-  <div
-    onClick={() => setIsMenuOpen(false)}
-    className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-  ></div>
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ease-in-out ${isMenuOpen
+            ? 'visible opacity-100'
+            : 'invisible opacity-0 pointer-events-none'
+          }`}
+      >
+        {/* الخلفية الشفافة */}
+        <div
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        ></div>
 
-  {/* القائمة الجانبية */}
-  <div
-    className={`absolute top-0 right-0 h-full w-[75%] bg-white/98 backdrop-blur-xl shadow-2xl pt-28 px-6 transition-transform duration-500 ease-in-out ${
-      isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-    }`}
-  >
-    <div className="flex flex-col items-center gap-6 text-xl font-bold text-gray-800">
+        {/* القائمة الجانبية */}
+        <div
+          className={`absolute top-0 right-0 h-full w-[75%] bg-white/98 backdrop-blur-xl shadow-2xl pt-28 px-6 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+        >
+          <div className="flex flex-col items-center gap-6 text-xl font-bold text-gray-800">
 
-      <Link href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
-        من نحن
-      </Link>
+            <Link href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+              من نحن
+            </Link>
 
-      <Link href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
-        خدماتنا
-      </Link>
+            <Link href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+              خدماتنا
+            </Link>
 
-      <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
-        أدوات هندسية
-      </Link>
+            <Link href="#tools" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+              أدوات هندسية
+            </Link>
 
-      <Link href="#portfolio" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
-        أعمالنا
-      </Link>
+            <Link href="#portfolio" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+              أعمالنا
+            </Link>
 
-      <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
-        تواصل معنا
-      </Link>
+            <Link href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors">
+              تواصل معنا
+            </Link>
 
-      <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4 w-full text-center">
-        اطلب خدمة
-      </a>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary mt-4 w-full text-center">
+              اطلب خدمة
+            </a>
 
-    </div>
-  </div>
-</div> 
+          </div>
+        </div>
+      </div>
 
 
 
-      <main className="pt-24 md:pt-32">  
-        {/* Hero Section */}  
-        <section className="px-6 md:px-10 py-20 md:py-32 border-b border-gray-100 bg-white overflow-hidden relative min-h-[70vh] flex items-center">  
-          <div className="absolute md:hidden inset-0 z-0">  
-            <Image  
-              src="/paper.webp"  
-              alt="Background"  
-              fill  
-              className="object-cover opacity-60"  
-              sizes="100vw"  
-              priority  
-            />  
-          </div>  
+      <main className="pt-24 md:pt-32">
+        {/* Hero Section */}
+        <section className="px-6 md:px-10 py-20 md:py-32 border-b border-gray-100 bg-white overflow-hidden relative min-h-[70vh] flex items-center">
+          <div className="absolute md:hidden inset-0 z-0">
+            <Image
+              src="/paper.webp"
+              alt="Background"
+              fill
+              className="object-cover opacity-60"
+              sizes="100vw"
+              priority
+            />
+          </div>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">  
-            <div className="fade-in-up">  
-              <h1 className="text-4xl md:text-6xl font-black text-foreground leading-[1.2] mb-6">  
-                حلول هندسية متكاملة لضمان <span className="text-primary">الكفاءة والجودة.</span>  
-              </h1>  
-              <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed max-w-xl">  
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">
+            <div className="fade-in-up">
+              <h1 className="text-4xl md:text-6xl font-black text-foreground leading-[1.2] mb-6">
+                حلول هندسية متكاملة لضمان <span className="text-primary">الكفاءة والجودة.</span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed max-w-xl">
                 مؤسسة معيار بقيادة المهندس / حمزة متخصصة في تقديم الحلول الهندسية المتكاملة في مجالات أنظمة المباني وخطوط الإنتاج، ننهض بمشاريعك بحلول مبتكرة وعملية.
-              
-              </p>  
-              <div className="flex flex-col sm:flex-row gap-4">  
-                <Link href="#contact" className="btn-primary text-lg px-8">  
-                  استشارة مجانية  
-                </Link>  
-                <Link href="#services" className="px-6 py-3 border-2 border-primary text-primary font-bold rounded-md hover:bg-primary/5 transition-colors text-lg inline-flex items-center justify-center">  
-                  تصفح خدماتنا  
-                </Link>  
-              </div>  
-            </div>  
 
-            <div className="hidden md:block relative h-[500px] w-full fade-in-up delay-200">  
-              <Image  
-                src="/paper.webp"  
-                alt="مخططات هندسية"  
-                fill  
-                className="object-cover rounded-2xl shadow-xl border border-gray-100"  
-                sizes="50vw"  
-                priority  
-              />  
-            </div>  
-          </div>  
-        </section>  
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="#contact" className="btn-primary text-lg px-8">
+                  استشارة مجانية
+                </Link>
+                <Link href="#services" className="px-6 py-3 border-2 border-primary text-primary font-bold rounded-md hover:bg-primary/5 transition-colors text-lg inline-flex items-center justify-center">
+                  تصفح خدماتنا
+                </Link>
+              </div>
+            </div>
 
-        {/* About Us */}  
-        <section id="about" className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto text-center">  
-          <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">من نحن</h2>  
-          <h3 className="text-3xl md:text-4xl font-bold mb-8">نؤمن أن كل مشكلة هندسية لها حل ذكي</h3>  
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">  
-            نحن فريق هندسي بقيادة مهندس ميكانيكي متخصص، نمتلك خبرة واسعة في أنظمة التكييف والتهوية (HVAC)، أنظمة مكافحة الحريق، الأنظمة الصحية، وأنظمة السلامة. مهمتنا هي الوصول للحل بأعلى كفاءة وأقل تكلفة.  
-          </p>  
-        </section>  
+            <div className="hidden md:block relative h-[500px] w-full fade-in-up delay-200">
+              <Image
+                src="/paper.webp"
+                alt="مخططات هندسية"
+                fill
+                className="object-cover rounded-2xl shadow-xl border border-gray-100"
+                sizes="50vw"
+                priority
+              />
+            </div>
+          </div>
+        </section>
 
-        {/* Services */}  
-        <section id="services" className="py-16 md:py-24 bg-gray-50 border-y border-gray-100 px-6 md:px-10">  
-          <div className="max-w-7xl mx-auto">  
-            <div className="text-center mb-16">  
-              <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">خدماتنا</h2>  
-              <h3 className="text-3xl md:text-4xl font-bold">الحلول الهندسية الشاملة</h3>  
-            </div>  
+        {/* About Us */}
+        <section id="about" className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto text-center">
+          <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">من نحن</h2>
+          <h3 className="text-3xl md:text-4xl font-bold mb-8">نؤمن أن كل مشكلة هندسية لها حل ذكي</h3>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
+            نحن فريق هندسي بقيادة مهندس ميكانيكي متخصص، نمتلك خبرة واسعة في أنظمة التكييف والتهوية (HVAC)، أنظمة مكافحة الحريق، الأنظمة الصحية، وأنظمة السلامة. مهمتنا هي الوصول للحل بأعلى كفاءة وأقل تكلفة.
+          </p>
+        </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">  
-              <Link href="/services/mep" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">❄️</div>  
-                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
-                  تصميم أنظمة MEP  
-                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
-                </h4>  
-                <p className="text-gray-600 mb-4 flex-grow">تصميم أنظمة التكييف والتهوية (HVAC)، مكافحة الحريق (Firefighting)، الأنظمة الصحية، والسلامة.</p>  
-              </Link>  
+        {/* Services */}
+        <section id="services" className="py-16 md:py-24 bg-gray-50 border-y border-gray-100 px-6 md:px-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">خدماتنا</h2>
+              <h3 className="text-3xl md:text-4xl font-bold">الحلول الهندسية الشاملة</h3>
+            </div>
 
-              <Link href="/services/production-lines" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">⚙️</div>  
-                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
-                  خطوط الإنتاج  
-                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
-                </h4>  
-                <p className="text-gray-600 mb-4 flex-grow">تصميم وتطوير خطوط الإنتاج، تحليل الأعطال وإيجاد الحلول الجبرية لتحسين كفاءة التشغيل.</p>  
-              </Link>  
-
-              <Link href="/services/custom-parts" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🧩</div>  
-                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
-                  تصميم أجزاء مخصصة  
-                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
-                </h4>  
-                <p className="text-gray-600 mb-4 flex-grow">تصميم قطع ميكانيكية حسب الطلب وتعديل تصميمات قائمة لحل مشاكل فنية.</p>  
-              </Link>  
-
-              <Link href="/services/consulting" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🧠</div>  
-                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
-                  الاستشارات الهندسية  
-                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
-                </h4>  
-                <p className="text-gray-600 mb-4 flex-grow">مراجعة التصميمات بدقة، تقديم حلول فنية للمشاكل الهندسية ودعم المشاريع بالخبرات.</p>  
-              </Link>  
-
-              <Link href="/services/online-maintenance" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">  
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🛠️</div>  
-                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">  
-                  الصيانة والتشغيل  
-                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>  
-                </h4>  
-                <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>  
-              </Link>  
-              
- <Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">      
-                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">💻</div>      
-                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">      
-                  تطوير و تصميم مواقع الويب     
-                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>      
-                </h4>      
-                <p className="text-gray-600 mb-4 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>      
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Link href="/services/mep" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">❄️</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  تصميم أنظمة MEP
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">تصميم أنظمة التكييف والتهوية (HVAC)، مكافحة الحريق (Firefighting)، الأنظمة الصحية، والسلامة.</p>
               </Link>
-              
-              
-            </div>  
-          </div>  
-        </section>  
 
-        {/* Interactive Tools */}  
-        <section id="tools" className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto">  
-          <div className="text-center mb-16">  
-            <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">أدوات هندسية</h2>  
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground">حاسبات سريعة لتقدير الأحمال</h3>  
-            <p className="text-gray-600 mt-4">استخدم هذه الأدوات كتقدير مبدئي قبل الاستشارة الهندسية.</p>  
-          </div>  
+              <Link href="/services/production-lines" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">⚙️</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  خطوط الإنتاج
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">تصميم وتطوير خطوط الإنتاج، تحليل الأعطال وإيجاد الحلول الجبرية لتحسين كفاءة التشغيل.</p>
+              </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">  
-            {/* HVAC Calculator */}  
-            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">  
-              <h4 className="text-2xl font-bold mb-2">حاسبة حمل التكييف التقديري</h4>  
-              <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة (يفترض ارتفاع قياسي).</p>  
-              <div className="flex flex-col gap-4">  
-                <div>  
-                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>  
+              <Link href="/services/custom-parts" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🧩</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  تصميم أجزاء مخصصة
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">تصميم قطع ميكانيكية حسب الطلب وتعديل تصميمات قائمة لحل مشاكل فنية.</p>
+              </Link>
+
+              <Link href="/services/consulting" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🧠</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  الاستشارات الهندسية
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">مراجعة التصميمات بدقة، تقديم حلول فنية للمشاكل الهندسية ودعم المشاريع بالخبرات.</p>
+              </Link>
+
+              <Link href="/services/online-maintenance" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">🛠️</div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  الصيانة والتشغيل
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-4 flex-grow">تشخيص الأعطال المعقدة عن بعد، دعم فني مباشر فعال، ومتابعة تشغيل الأنظمة.</p>
+              </Link>
+
+              <Link href="/services/software" className="bg-white p-8 card-hover shadow-soft border border-gray-100 flex flex-col group block">
+                <div className="w-12 h-12 bg-accent text-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold mb-4 flex items-center justify-between">
+                  تطوير و تصميم مواقع الويب
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-x-2">←</span>
+                </h4>
+                <p className="text-gray-600 mb-5 flex-grow">نُحوّل أفكارك إلى مواقع ويب احترافية تجمع بين التصميم العصري والبرمجة المتقنة؛ لنمنح مشروعك واجهة رقمية سريعة، متجاوبة، ومصممة خصيصاً لتحقيق النمو والتميز.</p>
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-primary">
+                  <span>استعراض أنواع وتصاميم المواقع (10 أنواع)</span>
+                  <span className="transform group-hover:-translate-x-1 transition-transform">←</span>
+                </div>
+              </Link>
+
+
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Tools */}
+        <section id="tools" className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-primary mb-2 uppercase tracking-widest">أدوات هندسية</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground">حاسبات سريعة لتقدير الأحمال</h3>
+            <p className="text-gray-600 mt-4">استخدم هذه الأدوات كتقدير مبدئي قبل الاستشارة الهندسية.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* HVAC Calculator */}
+            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
+              <h4 className="text-2xl font-bold mb-2">حاسبة حمل التكييف التقديري</h4>
+              <p className="text-sm text-gray-500 mb-6">احسب السعة التقريبية للمكيف المطلوبة بناءً على المساحة (يفترض ارتفاع قياسي).</p>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة (متر مربع):</label>
                   <input
                     type="number"
                     min="1"
@@ -417,9 +420,9 @@ return () => observer.disconnect();
                     placeholder="مثال: 50"
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:outline-none bg-white text-gray-900"
                   />
-                </div>  
-                <button onClick={calculateHvac} className="btn-primary w-full mt-2 cursor-pointer">احسب السعة</button>  
-                
+                </div>
+                <button onClick={calculateHvac} className="btn-primary w-full mt-2 cursor-pointer">احسب السعة</button>
+
                 {hvacResult !== null && (
                   <div className="mt-5 p-5 bg-gray-50 text-primary rounded-xl border border-primary/20 text-center animate-fade-in">
                     <p className="text-sm mb-2 text-gray-700">السعة التقديرية المطلوبة</p>
@@ -432,16 +435,16 @@ return () => observer.disconnect();
                     </p>
                   </div>
                 )}
-              </div>  
-            </div>  
+              </div>
+            </div>
 
-            {/* Fire Extinguisher Calculator */}  
-            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">  
-              <h4 className="text-2xl font-bold mb-2">حاسبة طفايات الحريق التقريبية</h4>  
-              <p className="text-sm text-gray-500 mb-6">احسب العدد التقريبي لطفايات الحريق اليدوية بناءً على المساحة.</p>  
-              <div className="flex flex-col gap-4">  
-                <div>  
-                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة الإجمالية للمكان (متر مربع):</label>  
+            {/* Fire Extinguisher Calculator */}
+            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-soft">
+              <h4 className="text-2xl font-bold mb-2">حاسبة طفايات الحريق التقريبية</h4>
+              <p className="text-sm text-gray-500 mb-6">احسب العدد التقريبي لطفايات الحريق اليدوية بناءً على المساحة.</p>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-1">المساحة الإجمالية للمكان (متر مربع):</label>
                   <input
                     type="number"
                     min="1"
@@ -450,10 +453,10 @@ return () => observer.disconnect();
                     onChange={(e) => setFireArea(e.target.value === '' ? '' : Number(e.target.value))}
                     placeholder="مثال: 1000"
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:outline-none bg-white text-gray-900"
-                  /> 
-                </div>  
-                <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2 cursor-pointer">احسب العدد</button>  
-                
+                  />
+                </div>
+                <button onClick={calculateFireExtinguisher} className="btn-primary w-full mt-2 cursor-pointer">احسب العدد</button>
+
                 {fireResult !== null && (
                   <div className="mt-5 p-5 bg-gray-50 text-primary rounded-xl border border-primary/20 text-center animate-fade-in">
                     <p className="text-sm mb-2 text-gray-700">العدد التقديري لطفايات الحريق</p>
@@ -465,98 +468,98 @@ return () => observer.disconnect();
                       هذه نتيجة حسابية أولية وليست اعتماداً لتوزيع الطفايات.
                     </p>
                   </div>
-                )}  
-              </div>  
-            </div>  
-          </div>  
-        </section>  
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
 
-        {/* Contact/Footer */}  
-        <section id="contact" className="py-20 bg-foreground text-white px-6 md:px-10">  
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">  
-            <div>  
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">لنتحدث حول مشروعك.</h2>  
-              <p className="text-gray-300 text-lg mb-8">  
-                سواء كنت تحتاج لتصميم أنظمة ذكية، حل مشكلة فنية، أو استشارة سريعة، فريقنا الهندسي جاهز لخدمتك.  
-              </p>  
-              <div className="flex flex-col gap-4">  
-                <a href="mailto:hamzaelzain.eng@gmail.com" className="text-xl font-bold flex items-center gap-3 hover:text-primary transition-colors">  
-                  ✉️ hamzaelzain.eng@gmail.com  
-                </a>  
-                <a href="https://wa.me/249116613320" target="_blank" rel="noopener noreferrer" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">  
-                  📱 تواصل واتساب (+249 11 661 3320)  
-                </a>  
-              </div>  
-            </div>  
+        {/* Contact/Footer */}
+        <section id="contact" className="py-20 bg-foreground text-white px-6 md:px-10">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">لنتحدث حول مشروعك.</h2>
+              <p className="text-gray-300 text-lg mb-8">
+                سواء كنت تحتاج لتصميم أنظمة ذكية، حل مشكلة فنية، أو استشارة سريعة، فريقنا الهندسي جاهز لخدمتك.
+              </p>
+              <div className="flex flex-col gap-4">
+                <a href="mailto:hamzaelzain.eng@gmail.com" className="text-xl font-bold flex items-center gap-3 hover:text-primary transition-colors">
+                  ✉️ hamzaelzain.eng@gmail.com
+                </a>
+                <a href="https://wa.me/249116613320" target="_blank" rel="noopener noreferrer" className="text-green-400 text-xl font-bold flex items-center gap-3 hover:text-green-300 transition-colors">
+                  📱 تواصل واتساب (+249 11 661 3320)
+                </a>
+              </div>
+            </div>
 
-            {/* Contact Form */}  
-            <div className="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20">  
-              <h3 className="text-2xl font-bold mb-6">طلب خدمة</h3>  
-              <form onSubmit={handleSubmitOrder} className="flex flex-col gap-4 text-gray-800">  
-                <select  
-                  value={clientService}  
-                  onChange={(e) => setClientService(e.target.value)}  
-                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"  
-                >  
-                  <option value="">نوع الخدمة...</option>  
-                  <option value="تصميم أنظمة MEP">تصميم أنظمة MEP</option>  
-                  <option value="خطوط الإنتاج">خطوط الإنتاج</option>  
-                  <option value="تصميم أجزاء مخصصة">تصميم أجزاء مخصصة</option>  
-                  <option value="استشارة هندسية">استشارة هندسية</option>  
+            {/* Contact Form */}
+            <div className="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20">
+              <h3 className="text-2xl font-bold mb-6">طلب خدمة</h3>
+              <form onSubmit={handleSubmitOrder} className="flex flex-col gap-4 text-gray-800">
+                <select
+                  value={clientService}
+                  onChange={(e) => setClientService(e.target.value)}
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                >
+                  <option value="">نوع الخدمة...</option>
+                  <option value="تصميم أنظمة MEP">تصميم أنظمة MEP</option>
+                  <option value="خطوط الإنتاج">خطوط الإنتاج</option>
+                  <option value="تصميم أجزاء مخصصة">تصميم أجزاء مخصصة</option>
+                  <option value="استشارة هندسية">استشارة هندسية</option>
                   <option value="الصيانة والتشغيل">الصيانة والتشغيل</option>
-                  <option value="تطوير و تصميم مواقع الويب">تطوير و تصميم مواقع الويب</option> 
-                </select>  
-                <textarea  
-                  placeholder="تفاصيل الطلب..."  
-                  rows={4}  
-                  value={clientDetails}  
-                  onChange={(e) => setClientDetails(e.target.value)}  
-                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"  
-                ></textarea>  
+                  <option value="تطوير و تصميم مواقع الويب">تطوير و تصميم مواقع الويب</option>
+                </select>
+                <textarea
+                  placeholder="تفاصيل الطلب..."
+                  rows={4}
+                  value={clientDetails}
+                  onChange={(e) => setClientDetails(e.target.value)}
+                  className="w-full bg-white border border-gray-500 rounded px-4 py-3 focus:outline-none focus:border-primary"
+                ></textarea>
 
-                {/* اختيار وسيلة الإرسال */}  
-                <div className="flex flex-col gap-2 mt-2 bg-white/5 p-3 rounded border border-white/10 text-white">  
-                  <span className="text-sm font-semibold text-gray-200">اختر طريقة إرسال الطلب:</span>  
-                  <div className="flex gap-6">  
-                    <label className="flex items-center gap-2 cursor-pointer text-sm">  
-                      <input  
-                        type="radio"  
-                        name="sendMethod"  
-                        value="whatsapp"  
-                        checked={sendMethod === 'whatsapp'}  
-                        onChange={() => setSendMethod('whatsapp')}  
-                        className="accent-primary"  
-                      />  
-                      واتساب  
-                    </label>  
-                    <label className="flex items-center gap-2 cursor-pointer text-sm">  
-                      <input  
-                        type="radio"  
-                        name="sendMethod"  
-                        value="gmail"  
-                        checked={sendMethod === 'gmail'}  
-                        onChange={() => setSendMethod('gmail')}  
-                        className="accent-primary"  
-                      />  
-                      البريد الإلكتروني (Gmail)  
-                    </label>  
-                  </div>  
-                </div>  
+                {/* اختيار وسيلة الإرسال */}
+                <div className="flex flex-col gap-2 mt-2 bg-white/5 p-3 rounded border border-white/10 text-white">
+                  <span className="text-sm font-semibold text-gray-200">اختر طريقة إرسال الطلب:</span>
+                  <div className="flex gap-6">
+                    <label className="flex items-center gap-2 cursor-pointer text-sm">
+                      <input
+                        type="radio"
+                        name="sendMethod"
+                        value="whatsapp"
+                        checked={sendMethod === 'whatsapp'}
+                        onChange={() => setSendMethod('whatsapp')}
+                        className="accent-primary"
+                      />
+                      واتساب
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer text-sm">
+                      <input
+                        type="radio"
+                        name="sendMethod"
+                        value="gmail"
+                        checked={sendMethod === 'gmail'}
+                        onChange={() => setSendMethod('gmail')}
+                        className="accent-primary"
+                      />
+                      البريد الإلكتروني (Gmail)
+                    </label>
+                  </div>
+                </div>
 
-                <button type="submit" className="btn-primary mt-2 cursor-pointer justify-center">إرسال الطلب</button>  
-              </form>  
-            </div>  
-          </div>  
+                <button type="submit" className="btn-primary mt-2 cursor-pointer justify-center">إرسال الطلب</button>
+              </form>
+            </div>
+          </div>
 
-          <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">  
-            <span>&copy; {new Date().getFullYear()} مؤسسة معيار للحلول الهندسية. جميع الحقوق محفوظة.</span>  
-          </div>  
-        </section>  
-        
+          <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <span>&copy; {new Date().getFullYear()} مؤسسة معيار للحلول الهندسية. جميع الحقوق محفوظة.</span>
+          </div>
+        </section>
+
         {/* زر الرجوع الى اعلى الصفحه*/}
-<button
-  onClick={scrollToTop}
-  className={`fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full
+        <button
+          onClick={scrollToTop}
+          className={`fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full
     bg-primary text-white
     border border-white/20
     shadow-xl shadow-primary/20
@@ -566,30 +569,29 @@ return () => observer.disconnect();
     active:scale-90
     group
     ${showBackToTop
-      ? 'opacity-100 translate-y-0'
-      : 'opacity-0 translate-y-12 pointer-events-none'
-    }`}
-  aria-label="العودة للأعلى"
->
-  <svg
-    className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2.5"
-      d="M5 12l7-7 7 7M12 5v14"
-    />
-  </svg>
-</button>
-      </main>  
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-12 pointer-events-none'
+            }`}
+          aria-label="العودة للأعلى"
+        >
+          <svg
+            className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              d="M5 12l7-7 7 7M12 5v14"
+            />
+          </svg>
+        </button>
+      </main>
 
-      
+
 
     </div>
   );
 }
- 
