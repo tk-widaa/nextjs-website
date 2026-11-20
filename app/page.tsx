@@ -334,15 +334,17 @@ export default function Home() {
       <main className="pt-24 md:pt-28">
         {/* Hero Section */}
         <section className="px-6 md:px-10 py-16 md:py-28 border-b border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden relative min-h-[70vh] flex items-center">
-          <div className="absolute md:hidden inset-0 z-0">
+          <div className="absolute md:hidden inset-0 z-0 overflow-hidden">
             <Image
               src="/paper.webp"
               alt="Background"
               fill
-              className="object-cover opacity-30 dark:opacity-10"
+              className="object-cover opacity-60 dark:opacity-20"
               sizes="100vw"
               priority
             />
+            {/* تدرج أبيض من الأعلى إلى المنتصف لضمان قراءة ووضوح الكلام تماماً في الجوال */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-transparent dark:from-slate-900 dark:via-slate-900/85 dark:to-transparent" />
           </div>
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">
@@ -393,7 +395,7 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Services Section with Unified Cards */}
+        {/* Services Section with Creative Thematic Background Cards */}
         <section id="services" className="py-16 md:py-24 bg-gray-50 dark:bg-slate-950 border-y border-gray-100 dark:border-slate-800 px-6 md:px-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -410,151 +412,263 @@ export default function Home() {
               {/* Card 1: MEP */}
               <Link
                 href="/services/mep"
-                className="bg-white dark:bg-slate-900 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
+                className="relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/25 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
               >
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v18m9-9H3m15.364-6.364l-12.728 12.728m0-12.728l12.728 12.728" />
+                {/* Decorative Thematic Background - Airflow, HVAC & Piping */}
+                <div className="absolute -bottom-8 -end-8 w-44 h-44 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none" />
+                <div className="absolute -bottom-5 -end-5 w-40 h-40 text-primary/10 dark:text-primary/15 group-hover:text-primary/25 group-hover:scale-110 transition-all duration-500 pointer-events-none select-none">
+                  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" className="w-full h-full">
+                    <circle cx="120" cy="120" r="100" strokeWidth="1" strokeDasharray="4 4" />
+                    <circle cx="120" cy="120" r="75" strokeWidth="1.5" />
+                    <circle cx="120" cy="120" r="50" strokeWidth="1" strokeDasharray="3 3" />
+                    <circle cx="120" cy="120" r="25" strokeWidth="2" />
+                    <path d="M 20 120 L 120 120 L 120 20" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 40 100 L 100 100 L 100 40" strokeWidth="1.5" strokeDasharray="6 3" />
+                    <path d="M 60 70 L 75 55 L 90 70" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M 75 55 L 75 90" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
-                <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {t('serviceMepTitle')}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t('serviceMepDesc')}
-                  </p>
-                </div>
-                <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
-                  <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                    {t('clickToBrowse')}
-                  </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v18m9-9H3m15.364-6.364l-12.728 12.728m0-12.728l12.728 12.728" />
+                    </svg>
+                  </div>
+                  <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
+                    <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                      {t('serviceMepTitle')}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      {t('serviceMepDesc')}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
+                    <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                      {t('clickToBrowse')}
+                    </span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 2: Production Lines */}
               <Link
                 href="/services/production-lines"
-                className="bg-white dark:bg-slate-900 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
+                className="relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/25 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
               >
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                {/* Decorative Thematic Background - Production Gears & Conveyors */}
+                <div className="absolute -bottom-8 -end-8 w-44 h-44 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none" />
+                <div className="absolute -bottom-5 -end-5 w-40 h-40 text-primary/10 dark:text-primary/15 group-hover:text-primary/25 group-hover:scale-110 transition-all duration-500 pointer-events-none select-none">
+                  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" className="w-full h-full">
+                    <g transform="translate(110, 110)">
+                      <circle cx="0" cy="0" r="38" strokeWidth="2" />
+                      <circle cx="0" cy="0" r="16" strokeWidth="2" strokeDasharray="4 2" />
+                      <rect x="-6" y="-48" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="-6" y="36" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="-48" y="-6" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="36" y="-6" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="-34" y="-34" width="12" height="12" rx="2" transform="rotate(45)" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="24" y="-34" width="12" height="12" rx="2" transform="rotate(45)" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="-34" y="24" width="12" height="12" rx="2" transform="rotate(45)" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                      <rect x="24" y="24" width="12" height="12" rx="2" transform="rotate(45)" fill="currentColor" fillOpacity="0.3" stroke="none" />
+                    </g>
+                    <path d="M 10 135 L 70 135 L 90 115" strokeWidth="2" strokeDasharray="6 4" strokeLinecap="round" />
+                    <path d="M 20 80 L 60 80 L 80 100" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
-                <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {t('serviceProdTitle')}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t('serviceProdDesc')}
-                  </p>
-                </div>
-                <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
-                  <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                    {t('clickToBrowse')}
-                  </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
+                    <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                      {t('serviceProdTitle')}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      {t('serviceProdDesc')}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
+                    <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                      {t('clickToBrowse')}
+                    </span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 3: Custom Parts */}
               <Link
                 href="/services/custom-parts"
-                className="bg-white dark:bg-slate-900 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
+                className="relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/25 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
               >
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                {/* Decorative Thematic Background - 3D CAD & Geometry */}
+                <div className="absolute -bottom-8 -end-8 w-44 h-44 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none" />
+                <div className="absolute -bottom-5 -end-5 w-40 h-40 text-primary/10 dark:text-primary/15 group-hover:text-primary/25 group-hover:scale-110 transition-all duration-500 pointer-events-none select-none">
+                  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" className="w-full h-full">
+                    <g transform="translate(100, 100)">
+                      <polygon points="0,-40 35,-20 35,20 0,0" strokeWidth="1.5" />
+                      <polygon points="0,-40 -35,-20 -35,20 0,0" strokeWidth="1.5" />
+                      <polygon points="0,0 35,20 0,40 -35,20" strokeWidth="2" />
+                      <line x1="0" y1="0" x2="0" y2="-60" strokeWidth="1" strokeDasharray="3 3" />
+                      <line x1="0" y1="0" x2="55" y2="30" strokeWidth="1" strokeDasharray="3 3" />
+                      <line x1="0" y1="0" x2="-55" y2="30" strokeWidth="1" strokeDasharray="3 3" />
+                    </g>
+                    <path d="M 30 70 L 30 130" strokeWidth="1" strokeDasharray="4 2" />
+                    <path d="M 25 70 L 35 70" strokeWidth="1" />
+                    <path d="M 25 130 L 35 130" strokeWidth="1" />
                   </svg>
                 </div>
-                <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {t('servicePartsTitle')}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t('servicePartsDesc')}
-                  </p>
-                </div>
-                <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
-                  <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                    {t('clickToBrowse')}
-                  </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                  </div>
+                  <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
+                    <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                      {t('servicePartsTitle')}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      {t('servicePartsDesc')}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
+                    <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                      {t('clickToBrowse')}
+                    </span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 4: Engineering Consulting */}
               <Link
                 href="/services/consulting"
-                className="bg-white dark:bg-slate-900 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
+                className="relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/25 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
               >
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                {/* Decorative Thematic Background - Compass & Blueprint Grid */}
+                <div className="absolute -bottom-8 -end-8 w-44 h-44 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none" />
+                <div className="absolute -bottom-5 -end-5 w-40 h-40 text-primary/10 dark:text-primary/15 group-hover:text-primary/25 group-hover:scale-110 transition-all duration-500 pointer-events-none select-none">
+                  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" className="w-full h-full">
+                    <g transform="translate(105, 105)">
+                      <circle cx="0" cy="0" r="50" strokeWidth="1" strokeDasharray="5 3" />
+                      <circle cx="0" cy="0" r="30" strokeWidth="1.5" />
+                      <circle cx="0" cy="0" r="10" strokeWidth="2" />
+                      <line x1="-60" y1="0" x2="60" y2="0" strokeWidth="1" strokeDasharray="4 4" />
+                      <line x1="0" y1="-60" x2="0" y2="60" strokeWidth="1" strokeDasharray="4 4" />
+                      <path d="M 0 -45 L -25 35" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M 0 -45 L 25 35" strokeWidth="2" strokeLinecap="round" />
+                      <circle cx="0" cy="-45" r="5" strokeWidth="2" fill="currentColor" fillOpacity="0.2" />
+                    </g>
                   </svg>
                 </div>
-                <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {t('serviceConsultingTitle')}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t('serviceConsultingDesc')}
-                  </p>
-                </div>
-                <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
-                  <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                    {t('clickToBrowse')}
-                  </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
+                    <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                      {t('serviceConsultingTitle')}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      {t('serviceConsultingDesc')}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
+                    <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                      {t('clickToBrowse')}
+                    </span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 5: Maintenance & Operations */}
               <Link
                 href="/services/online-maintenance"
-                className="bg-white dark:bg-slate-900 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
+                className="relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/25 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
               >
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                {/* Decorative Thematic Background - Telemetry Wave & Diagnostic Hex */}
+                <div className="absolute -bottom-8 -end-8 w-44 h-44 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none" />
+                <div className="absolute -bottom-5 -end-5 w-40 h-40 text-primary/10 dark:text-primary/15 group-hover:text-primary/25 group-hover:scale-110 transition-all duration-500 pointer-events-none select-none">
+                  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" className="w-full h-full">
+                    <polygon points="105,70 130,85 130,115 105,130 80,115 80,85" strokeWidth="1.5" strokeDasharray="4 2" />
+                    <polygon points="135,115 160,130 160,160 135,175 110,160 110,130" strokeWidth="1" />
+                    <path d="M 15 105 L 45 105 L 55 85 L 65 125 L 75 75 L 85 115 L 95 105 L 145 105" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="105" cy="100" r="18" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <circle cx="105" cy="100" r="5" fill="currentColor" fillOpacity="0.4" stroke="none" />
                   </svg>
                 </div>
-                <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {t('serviceMaintenanceTitle')}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t('serviceMaintenanceDesc')}
-                  </p>
-                </div>
-                <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
-                  <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                    {t('clickToBrowse')}
-                  </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </div>
+                  <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
+                    <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                      {t('serviceMaintenanceTitle')}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      {t('serviceMaintenanceDesc')}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
+                    <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                      {t('clickToBrowse')}
+                    </span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 6: Web Design & Development */}
               <Link
                 href="/services/software"
-                className="bg-white dark:bg-slate-900 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
+                className="relative overflow-hidden bg-gradient-to-br from-white via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/25 p-8 card-hover shadow-soft border border-gray-200/80 dark:border-slate-800 flex flex-col group block"
               >
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                {/* Decorative Thematic Background - Code Brackets & Web Grid */}
+                <div className="absolute -bottom-8 -end-8 w-44 h-44 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none" />
+                <div className="absolute -bottom-5 -end-5 w-40 h-40 text-primary/10 dark:text-primary/15 group-hover:text-primary/25 group-hover:scale-110 transition-all duration-500 pointer-events-none select-none">
+                  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" className="w-full h-full">
+                    <g transform="translate(90, 95)">
+                      <path d="M -15 -18 L -35 0 L -15 18" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M 8 -24 L -8 24" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M 15 -18 L 35 0 L 15 18" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </g>
+                    <rect x="50" y="45" width="95" height="70" rx="8" strokeWidth="1.5" strokeDasharray="4 2" />
+                    <line x1="50" y1="62" x2="145" y2="62" strokeWidth="1.5" />
+                    <circle cx="62" cy="54" r="2.5" fill="currentColor" fillOpacity="0.5" stroke="none" />
+                    <circle cx="70" cy="54" r="2.5" fill="currentColor" fillOpacity="0.5" stroke="none" />
+                    <circle cx="78" cy="54" r="2.5" fill="currentColor" fillOpacity="0.5" stroke="none" />
                   </svg>
                 </div>
-                <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {t('serviceSoftwareTitle')}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t('serviceSoftwareDesc')}
-                  </p>
-                </div>
-                <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
-                  <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                    {t('clickToBrowse')}
-                  </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-primary rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  </div>
+                  <div className="border-r-4 border-primary pr-3.5 rtl:border-r-4 rtl:pr-3.5 rtl:border-l-0 ltr:border-l-4 ltr:pl-3.5 ltr:border-r-0 mb-4">
+                    <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                      {t('serviceSoftwareTitle')}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                      {t('serviceSoftwareDesc')}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4 flex rtl:justify-end ltr:justify-start">
+                    <span className="text-xs font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                      {t('clickToBrowse')}
+                    </span>
+                  </div>
                 </div>
               </Link>
             </div>
