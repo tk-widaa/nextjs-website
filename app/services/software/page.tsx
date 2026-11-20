@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useApp } from '../../context/AppContext';
@@ -212,6 +212,10 @@ const websiteServices: WebsiteService[] = [
 export default function SoftwareServicesPage() {
   const { language, theme, toggleLanguage, toggleTheme, t } = useApp();
   const isAr = language === 'ar';
+
+  useEffect(() => {
+    document.title = isAr ? 'معيار | تطوير وتصميم مواقع الويب' : "Mea'yar | Web Design & Development";
+  }, [isAr]);
 
   const [selectedKey, setSelectedKey] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');

@@ -251,3 +251,23 @@ img.reveal-element.reveal-visible {
     border-color: var(--primary);
   }
 }
+
+/* 
+  كود مسؤول عن إخفاء مؤشرات التطوير ومسارات الملفات التلقائية لـ Next.js:
+  - يقوم بإخفاء الشارة العائمة ومسار الملفات (مثل app/services/...) التي يعرضها إطار Next.js في وضع التطوير داخل المتصفح.
+  - يسمح للمتصفح بإظهار عنوان الرابط النظيف (URL) في شريط العنوان فقط دون إزعاج المستخدم بمسارات الملفات البرمجية.
+*/
+nextjs-portal,
+[data-nextjs-dev-indicator],
+#next-dev-indicator,
+[data-next-badge],
+div[data-nextjs-toast],
+div[data-nextjs-dev-tools],
+[data-nextjs-route-announcer],
+next-route-announcer {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+

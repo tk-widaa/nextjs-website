@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
+
+export const metadata: Metadata = {
+  title: 'معيار | دراسة وتصميم وتوريد خطوط الإنتاج',
+  description: 'تحليل وتطوير خطوط الإنتاج التصنيعية لرفع الجودة وتحسين كفاءة التشغيل.',
+};
 
 export default function ProductionLinesService() {
   return (

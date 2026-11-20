@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
+
+export const metadata: Metadata = {
+  title: 'معيار | الصيانة والتشخيص الهندسي عن بعد',
+  description: 'تشخيص الأعطال المعقدة عن بعد ودعم فني هندسي مستمر لحماية استثماراتك.',
+};
 
 export default function OnlineMaintenanceService() {
   return (

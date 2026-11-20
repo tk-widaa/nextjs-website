@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
+
+export const metadata: Metadata = {
+  title: 'معيار | الاستشارات الهندسية والصناعية',
+  description: 'خبرات ميكانيكية احترافية واستشارات هندسية وصناعية متقدمة.',
+};
 
 export default function ConsultingService() {
   return (

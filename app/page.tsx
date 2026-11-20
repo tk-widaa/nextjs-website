@@ -343,8 +343,14 @@ export default function Home() {
               sizes="100vw"
               priority
             />
-            {/* تدرج أبيض من الأعلى إلى المنتصف لضمان قراءة ووضوح الكلام تماماً في الجوال */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-transparent dark:from-slate-900 dark:via-slate-900/85 dark:to-transparent" />
+            {/* 
+              تدرج لوني أبيض مخصص لشاشات الجوال:
+              - يبدأ باللون الأبيض الكثيف (الغامق) من الأسفل حيث تتركز النصوص والأزرار.
+              - يتدرج صعوداً إلى اللون الفاتح والشفاف في الأعلى.
+              - الوظيفة البرمجية: عزل خلفية المخطط الهندسي تماماً أسفل الشاشة لجعل نصوص الترحيب والأزرار واضحة وسهلة القراءة للمستخدم بدون أي تشويش.
+              - يدعم الوضع الداكن تلقائياً بتدرج لوني ملائم (dark:from-slate-900).
+            */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-transparent dark:from-slate-900 dark:via-slate-900/85 dark:to-transparent pointer-events-none" />
           </div>
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">

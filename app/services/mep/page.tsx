@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
+
+export const metadata: Metadata = {
+  title: 'معيار | تصميم أنظمة MEP',
+  description: 'حلول هندسية متكاملة لأنظمة التكييف، الحريق، والصرف الصحي.',
+};
 
 export default function MEPService() {
   return (
