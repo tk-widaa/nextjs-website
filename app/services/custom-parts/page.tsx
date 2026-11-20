@@ -4,8 +4,13 @@ import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
 
 export const metadata: Metadata = {
-  title: 'معيار | تصنيع وتوريد قطع الغيار المخصصة',
-  description: 'تصميم وتعديل القطع الميكانيكية المعقدة لتلائم احتياجاتك التشغيلية الخاصة.',
+  title: 'تصنيع وتوريد قطع الغيار المخصصة | معيار',
+  description: 'تصميم وهندسة وتوريد القطع الميكانيكية المعقدة بدقة متناهية لتلائم المتطلبات التشغيلية.',
+  openGraph: {
+    title: 'تصنيع وتوريد قطع الغيار المخصصة | معيار',
+    description: 'تصميم وهندسة وتوريد القطع الميكانيكية المعقدة بدقة متناهية لتلائم المتطلبات التشغيلية.',
+    images: [{ url: '/og-image.jpg', width: 800, height: 800, alt: 'تصنيع وتوريد قطع الغيار المخصصة | معيار' }],
+  },
 };
 
 export default function CustomPartsService() {

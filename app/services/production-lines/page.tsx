@@ -4,8 +4,13 @@ import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
 
 export const metadata: Metadata = {
-  title: 'معيار | دراسة وتصميم وتوريد خطوط الإنتاج',
-  description: 'تحليل وتطوير خطوط الإنتاج التصنيعية لرفع الجودة وتحسين كفاءة التشغيل.',
+  title: 'دراسة وتصميم وتوريد خطوط الإنتاج | معيار',
+  description: 'تحليل وتطوير خطوط الإنتاج الصناعية لرفع الجودة وتحسين كفاءة التشغيل وتخفيض الهدر.',
+  openGraph: {
+    title: 'دراسة وتصميم وتوريد خطوط الإنتاج | معيار',
+    description: 'تحليل وتطوير خطوط الإنتاج الصناعية لرفع الجودة وتحسين كفاءة التشغيل وتخفيض الهدر.',
+    images: [{ url: '/og-image.jpg', width: 800, height: 800, alt: 'دراسة وتصميم وتوريد خطوط الإنتاج | معيار' }],
+  },
 };
 
 export default function ProductionLinesService() {

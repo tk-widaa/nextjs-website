@@ -4,8 +4,13 @@ import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
 
 export const metadata: Metadata = {
-  title: 'معيار | الاستشارات الهندسية والصناعية',
-  description: 'خبرات ميكانيكية احترافية واستشارات هندسية وصناعية متقدمة.',
+  title: 'الاستشارات الهندسية والصناعية | معيار',
+  description: 'خبرات ميكانيكية احترافية واستشارات صناعية متقدمة للمشاريع والمصانع.',
+  openGraph: {
+    title: 'الاستشارات الهندسية والصناعية | معيار',
+    description: 'خبرات ميكانيكية احترافية واستشارات صناعية متقدمة للمشاريع والمصانع.',
+    images: [{ url: '/og-image.jpg', width: 800, height: 800, alt: 'الاستشارات الهندسية والصناعية | معيار' }],
+  },
 };
 
 export default function ConsultingService() {

@@ -4,8 +4,13 @@ import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
 
 export const metadata: Metadata = {
-  title: 'معيار | تصميم أنظمة MEP',
-  description: 'حلول هندسية متكاملة لأنظمة التكييف، الحريق، والصرف الصحي.',
+  title: 'تصميم أنظمة MEP | معيار',
+  description: 'حلول هندسية متكاملة لأنظمة التكييف والتهوية (HVAC)، ومكافحة الحريق، والصرف الصحي وتغذية المياه وفق أحدث الأكواد العالمية.',
+  openGraph: {
+    title: 'تصميم أنظمة MEP | معيار',
+    description: 'حلول هندسية متكاملة لأنظمة التكييف ومكافحة الحريق والصرف الصحي وفق أحدث الأكواد العالمية.',
+    images: [{ url: '/og-image.jpg', width: 800, height: 800, alt: 'تصميم أنظمة MEP | معيار' }],
+  },
 };
 
 export default function MEPService() {

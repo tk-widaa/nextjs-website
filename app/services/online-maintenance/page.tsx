@@ -4,8 +4,13 @@ import Image from 'next/image';
 import ServiceNav from '../../components/ServiceNav';
 
 export const metadata: Metadata = {
-  title: 'معيار | الصيانة والتشخيص الهندسي عن بعد',
-  description: 'تشخيص الأعطال المعقدة عن بعد ودعم فني هندسي مستمر لحماية استثماراتك.',
+  title: 'الصيانة والتشخيص الهندسي عن بعد | معيار',
+  description: 'تشخيص الأعطال الميكانيكية المعقدة عن بعد ودعم فني هندسي مستمر لحماية استثماراتك.',
+  openGraph: {
+    title: 'الصيانة والتشخيص الهندسي عن بعد | معيار',
+    description: 'تشخيص الأعطال الميكانيكية المعقدة عن بعد ودعم فني هندسي مستمر لحماية استثماراتك.',
+    images: [{ url: '/og-image.jpg', width: 800, height: 800, alt: 'الصيانة والتشخيص الهندسي عن بعد | معيار' }],
+  },
 };
 
 export default function OnlineMaintenanceService() {
